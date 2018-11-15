@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ReglasDePrioridad": {
+    "TFG-Reglas-de-prioridad": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ReglasDePrioridad",
+            "outputPath": "dist/TFG-Reglas-de-prioridad",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ReglasDePrioridad:build"
+            "browserTarget": "TFG-Reglas-de-prioridad:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ReglasDePrioridad:build:production"
+              "browserTarget": "TFG-Reglas-de-prioridad:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ReglasDePrioridad:build"
+            "browserTarget": "TFG-Reglas-de-prioridad:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "ReglasDePrioridad-e2e": {
+    "TFG-Reglas-de-prioridad-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ReglasDePrioridad:serve"
+            "devServerTarget": "TFG-Reglas-de-prioridad:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ReglasDePrioridad:serve:production"
+              "devServerTarget": "TFG-Reglas-de-prioridad:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "ReglasDePrioridad"
+  "defaultProject": "TFG-Reglas-de-prioridad"
 }
