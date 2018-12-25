@@ -4,9 +4,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { MenuInputEjecucionComponent } from './menu-input-ejecucion/menu-input-ejecucion.component'
 import { InputManualComponent } from './input-manual/input-manual.component'
 import { HomeComponent } from './home/home.component'
+import { ContactListComponent } from './contact-list/contact-list.component';
+import { PiezaComponent } from './pieza/pieza.component';
 const routes: Routes = [
   { path: 'input', component: MenuInputEjecucionComponent },
   { path: 'input-manual', component: InputManualComponent },
+  {
+    path:  'contacts',
+    component:  ContactListComponent
+  },
+  {
+    path:  'pieza',
+    component: PiezaComponent
+  },
   { path: 'home', component: HomeComponent }
   //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];

@@ -9,6 +9,9 @@ import { MenuInputEjecucionComponent } from './menu-input-ejecucion/menu-input-e
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { InputManualComponent } from './input-manual/input-manual.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
+import { HttpClientModule } from  '@angular/common/http';
+import { PiezaComponent } from './pieza/pieza.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,15 @@ import { InputManualComponent } from './input-manual/input-manual.component';
    
     MenuInputEjecucionComponent,
     HomeComponent,
-    InputManualComponent
+    InputManualComponent,
+    ContactListComponent,
+    PiezaComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

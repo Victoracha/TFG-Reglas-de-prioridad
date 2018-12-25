@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from pieza_ejecutada import views as cviews
 
 urlpatterns = [
     path('planificador/', include('planificador.urls')),
+    #path('pieza_ejecutada/', include('pieza_ejecutada.urls')),
+    path('pieza_ejecutada/', cviews.ContactListAPIView.as_view(), name='pieza'),
     path('admin/', admin.site.urls),
 ]
