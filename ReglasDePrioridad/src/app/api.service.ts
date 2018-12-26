@@ -9,8 +9,12 @@ providedIn:  'root'
 export  class  APIService {
   API_URL  =  'http://localhost:8000';
   constructor(private  httpClient:  HttpClient) {}
-  getContacts(){
+  getPieza(){
       
       return  this.httpClient.get(`${this.API_URL}/Pieza/`);
   }
+  getEjecucion(){
+      
+    return  this.httpClient.get(`${this.API_URL}/ejecucion/`);
+}
 }

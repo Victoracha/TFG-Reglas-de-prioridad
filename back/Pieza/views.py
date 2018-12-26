@@ -3,20 +3,23 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from Pieza.models import Pieza
+from Pieza.models import PiezaEje
 from Pieza.serializers import PiezaSerializer
+from Pieza.models import Ejecucion
+from Pieza.serializers import EjecucionSerializer
+@csrf_exempt
+def ejecucion_list(request):
+
+    if request.method == 'GET':
+        ejecucion= Ejecucion.objects.all()
+        serializer = EjecucionSerializer(ejecucion, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
 
 @csrf_exempt
 def pieza_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    """try:
-        piezas = Pieza.objects.get(pk=pk)
-    except Snippet.DoesNotExist:
-        return HttpResponse(status=404)
-    pk=str(pk)"""
+
     if request.method == 'GET':
-        piezas= Pieza.objects.all()
+        piezas= PiezaEje.objects.all()
         serializer = PiezaSerializer(piezas, many=True)
         return JsonResponse(serializer.data, safe=False)

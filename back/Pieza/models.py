@@ -9,9 +9,16 @@ LEXERS = [item for item in get_all_lexers() if item[1]]
 LANGUAGE_CHOICES = sorted([(item[1][0], item[0]) for item in LEXERS])
 STYLE_CHOICES = sorted((item, item) for item in get_all_styles())"""
 
+class Ejecucion(models.Model):
+    fecha = models.DateTimeField(auto_now_add=True)
+    def create(self, validated_data):
 
-class Pieza(models.Model):
-    nPieza = models.DateTimeField(auto_now_add=True)
+        return Ejecucion.objects.create(**validated_data)
+
+class PiezaEje(models.Model):
+    id=models.AutoField(primary_key=True )
+    nPieza = models.IntegerField()
+    ejecucion = models.ForeignKey(Ejecucion, on_delete=models.CASCADE)
     """class Meta:
         ordering = ('created',)"""
     def create(self, validated_data):

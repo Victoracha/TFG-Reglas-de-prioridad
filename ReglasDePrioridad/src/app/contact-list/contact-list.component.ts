@@ -9,6 +9,7 @@ import { APIService } from '../api.service';
 export class ContactListComponent implements OnInit {
 
   private pieza: Array<object> = [];
+  private ejecucion: Array<object> = [];
   constructor(private apiService: APIService) { }
 
   ngOnInit() {
@@ -16,9 +17,16 @@ export class ContactListComponent implements OnInit {
   }
 
   public getContacts(){
-    this.apiService.getContacts().subscribe((data: Array<object>) => {
 
+    this.apiService.getPieza().subscribe((data: Array<object>) => {
+      
       this.pieza = data;
+      console.log(data);
+    });
+
+    this.apiService.getEjecucion().subscribe((data: Array<object>) => {
+      
+      this.ejecucion = data;
       console.log(data);
     });
   }
