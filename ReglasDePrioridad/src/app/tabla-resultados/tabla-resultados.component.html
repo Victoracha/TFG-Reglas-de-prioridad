@@ -1,0 +1,56 @@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<body>
+    <div class="col-lg-3"  >
+    
+      </div>
+      <div class="col-lg-8 "  >
+          
+          <div class="table-responsive-xl">
+            <table   class="table table-bordered ">
+              <thead>
+                <tr id="miTablaPersonalizada">
+                  
+                  <th scope="col">Tiempo Máximo </th>
+                  <th scope="col">Tiempo Mínimo</th>
+                  <th scope="col">Tiempo Medio</th>
+                  <th scope="col">SA</th>
+                  <th scope="col">SR</th>
+                  <th scope="col">NA</th>
+                  <th scope="col">NR</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr *ngFor="let pie of resultado">
+                    
+                    
+                    
+                    <td>{{ pie.tiempoMax}} Segundos</td>
+                    <td>{{ pie.tiempoMin}}</td>
+                    <td>{{ pie.tiempoMedio}}</td>
+                    <td>{{ pie.SA}} </td>
+                    <td>{{ pie.SR}}</td>
+                    <td>{{ pie.NA}}</td>
+                    <td>{{ pie.NR}}</td>
+                    
+                  </tr>
+                
+                
+              </tbody>
+            </table>
+          </div>
+      </div>
+      <div class="col-lg-1"  >
+          
+        </div>

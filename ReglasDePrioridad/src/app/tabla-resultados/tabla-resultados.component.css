@@ -1,0 +1,10 @@
+#miTablaPersonalizada th{
+    width: 130px;
+    overflow: auto;
+    border: 1px solid;
+    background: black;
+    color: white;
+  }
+  body {
+    
+  }

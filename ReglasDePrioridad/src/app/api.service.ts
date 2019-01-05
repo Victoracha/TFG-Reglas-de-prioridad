@@ -17,4 +17,12 @@ export  class  APIService {
       
     return  this.httpClient.get(`${this.API_URL}/ejecucion/`);
 }
+
+getTablaResultados(){
+      
+    return  this.httpClient.get(`${this.API_URL}/resultado/42/`);
+}
+  postDatosEjecucion(fases){
+      return this.httpClient.post(`${this.API_URL}/ejecucion/`, fases);
+  }
 }
