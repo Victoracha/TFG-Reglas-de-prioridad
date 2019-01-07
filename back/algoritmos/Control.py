@@ -39,16 +39,27 @@ class Control():
                 self._tiempoMedio += piezaEvaTiempo.getTiempoTotal()
             self._tiempoMedio /= len(self._piezas)
 
-            e = Ejecucion(fecha=timezone.now())
-            e.save()
+
             for da in self._data.values():
                 d=0
             for num in da:
                 d=0
-            p = PiezaResultado(nPieza=self._maquinas[2].getTiempoMaquina(), ejecucion=e, tiempoEsperado = 0 ,tiempoTotal=0, diferenciaAde=0, diferenciaRetra=0)
-            p.save()
-            resultado = ResultadoGeneral (id=e, tiempoMax =self._tiempoMax, tiempoMin = self._tiempoMin, tiempoMedio =  self._tiempoMedio
-                                          , SA =self._SA, SR =  self._SR, NA = self._NA,NR =  self._NR)
 
-            resultado.save()
+            #self.guardaPiezas()
+
             return 0
+
+    def guardaPiezas(self):
+        e = Ejecucion(fecha=timezone.now())
+        e.save()
+        for pieza in self._piezas:
+            p = PiezaResultado(nPieza=pieza.getNpieza(), ejecucion=e, tiempoEsperado=pieza.getTiempoEsperado(),
+                               tiempoTotal=pieza.getTiempoTotal(),
+                               diferenciaAde=pieza.getAdelanto(), diferenciaRetra=pieza.getRetroceso())
+
+            p.save()
+        resultado = ResultadoGeneral(id=e, tiempoMax=self._tiempoMax, tiempoMin=self._tiempoMin,
+                                     tiempoMedio=self._tiempoMedio
+                                     , SA=self._SA, SR=self._SR, NA=self._NA, NR=self._NR)
+
+        resultado.save()

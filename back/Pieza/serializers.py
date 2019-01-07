@@ -5,6 +5,8 @@ from Pieza.models import PiezaEje
 from Pieza.models import PiezaResultado
 from Pieza.models import Ejecucion
 from Pieza.models import ResultadoGeneral
+from Pieza.models import Fase
+
 class EjecucionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ejecucion
@@ -22,3 +24,9 @@ class PiezaResultadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiezaResultado
         fields = ('id','nPieza','ejecucion','tiempoEsperado','tiempoTotal', 'diferenciaAde', 'diferenciaRetra')
+
+class FaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fase
+        fields = ('id','nPieza','ejecucion', 'nFase','tiempoRequerido','maquinaNecesaria', 'tiempoFaseEntrada', 'tiempoFaseSalida')
+

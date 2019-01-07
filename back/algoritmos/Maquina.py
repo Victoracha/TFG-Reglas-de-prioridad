@@ -1,3 +1,4 @@
+import random
 class Maquina:
     def __init__(self, nMaquina, nPiezas):
         self._ejecucion = []
@@ -18,6 +19,7 @@ class Maquina:
         self._piezasEspera = {}
         for i in range(nPiezas):
             self._piezasEspera[i+1]=False
+
     def getEjecucion(self):
         return self._ejecucion
     def getNmaquina(self):
@@ -39,6 +41,7 @@ class Maquina:
                     self._piezasEspera[self._faseActualMaquina[0].get_nPieza()]=False
                     self._libre=True
                     if self._faseActualMaquina[0] in self._candidatos:
+                        self._FasesEjecutadasHisto[-1].set_TiempoSalida(self._tiempoActual)
                         self._candidatos.remove(self._faseActualMaquina[0])
                         self._faseActualMaquina=[]
                         return faseEliminada
@@ -78,6 +81,7 @@ class Maquina:
             elif self._faseActualMaquina[0].get_tiempoRequerido() > candidato.get_tiempoRequerido():
                 self._faseActualMaquina = [candidato]
                 self._tiempoEjecucionFase = self._tiempoActual
+                candidato.set_TiempoEntrada(self._tiempoActual)
 
     def llp(self):
         for candidato in self._candidatos:
@@ -90,6 +94,18 @@ class Maquina:
             elif self._faseActualMaquina[0].get_tiempoRequerido() < candidato.get_tiempoRequerido():
                 self._faseActualMaquina = [candidato]
                 self._tiempoEjecucionFase = self._tiempoActual
+                candidato.set_TiempoEntrada(self._tiempoActual)
+
+
+
+
     def fifo(self):
         self._faseActualMaquina = [self._candidatos[0]]
         self._tiempoEjecucionFase = self._tiempoActual
+        self._faseActualMaquina.set_TiempoEntrada(self._tiempoActual)
+
+    def aleatorio(self):
+        self._faseActualMaquina = [random.choice(self._candidatos[0])]
+        self._tiempoEjecucionFase = self._tiempoActual
+        self._faseActualMaquina.set_TiempoEntrada(self._tiempoActual)
+

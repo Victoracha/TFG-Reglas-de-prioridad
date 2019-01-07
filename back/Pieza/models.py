@@ -56,3 +56,30 @@ class ResultadoGeneral(models.Model):
     def create(self, validated_data):
 
         return ResultadoGeneral.objects.create(**validated_data)
+
+class Fase(models.Model):
+    id=models.AutoField(primary_key=True )
+    nPieza=models.ForeignKey(PiezaResultado, on_delete=models.CASCADE)
+    ejecucion = models.ForeignKey(Ejecucion, on_delete=models.CASCADE)
+    nFase = models.IntegerField()
+    tiempoRequerido = models.FloatField()
+    maquinaNecesaria = models.IntegerField()
+    tiempoFaseEntrada = models.FloatField()
+    tiempoFaseSalida = models.FloatField()
+
+    def create(self, validated_data):
+
+        return ResultadoGeneral.objects.create(**validated_data)
+
+"""class MaquinaResultado(models.Model):
+    id=models.ForeignKey(Ejecucion, primary_key=True, on_delete=models.CASCADE)
+    =models.FloatField()
+    tiempoMin = models.FloatField()
+    tiempoMedio = models.FloatField()
+    SA = models.FloatField()
+    SR = models.FloatField()
+    NA = models.FloatField()
+    NR = models.FloatField()
+    def create(self, validated_data):
+
+        return ResultadoGeneral.objects.create(**validated_data)"""

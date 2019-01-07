@@ -20,7 +20,7 @@
               <thead>
                 <tr id="miTablaPersonalizada">
                   
-                  <th scope="col">Tiempo Máximo </th>
+                  <th scope="col">Tiempo Máximo</th>
                   <th scope="col">Tiempo Mínimo</th>
                   <th scope="col">Tiempo Medio</th>
                   <th scope="col">SA</th>
@@ -36,7 +36,7 @@
                     
                     
                     
-                    <td>{{ pie.tiempoMax}} Segundos</td>
+                    <td>{{ pie.tiempoMax}} </td>
                     <td>{{ pie.tiempoMin}}</td>
                     <td>{{ pie.tiempoMedio}}</td>
                     <td>{{ pie.SA}} </td>
@@ -50,6 +50,43 @@
               </tbody>
             </table>
           </div>
+
+          <div class="table-responsive-xl">
+              <table   class="table table-bordered ">
+                <thead>
+                  <tr id="miTablaPersonalizada">
+                    
+                    <th scope="col"> Número Pieza </th>
+                    <th scope="col">Tiempo Esperado</th>
+                    <th scope="col">Tiempo Total</th>
+                    <th scope="col">Diferencia Adelantado</th>
+                    <th scope="col">Diferencia Atrasado</th>
+                    
+                   
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    <tr *ngFor="let pie of resultadoPiezas">
+                      
+                      
+                      
+                      <td>{{ pie.nPieza}} </td>
+                      <!--<td>{{ pie.ejecucion}}</td>-->
+                      <td>{{ pie.tiempoEsperado}}</td>
+                      <td>{{ pie.tiempoTotal}} </td>
+                      <td>{{ pie.diferenciaAde}}</td>
+                      <td>{{ pie.diferenciaRetra}}</td>
+                    
+                      
+                    </tr>
+                  
+                  
+                </tbody>
+              </table>
+            </div>
+
       </div>
       <div class="col-lg-1"  >
           

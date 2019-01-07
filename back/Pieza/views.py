@@ -9,6 +9,8 @@ from Pieza.models import Ejecucion
 from Pieza.serializers import EjecucionSerializer
 from Pieza.models import ResultadoGeneral
 from Pieza.serializers import ResultadoGeneralSerializer
+from Pieza.models import Fase
+from Pieza.serializers import FaseSerializer
 from Pieza.models import PiezaResultado
 from Pieza.serializers import PiezaResultadoSerializer
 from algoritmos.Control import Control
@@ -56,9 +58,18 @@ def resultado_list_detail(request, pk):
         resultado= ResultadoGeneral.objects.get(pk=pk)
         serializer = ResultadoGeneralSerializer(resultado)
         return JsonResponse(serializer.data)
-def pieza_resultado_list_detail(request, pk):
+
+def fase_list_detail(request, ejecucion):
 
     if request.method == 'GET':
-        resultado= PiezaResultado.objects.get(pk=pk)
-        serializer = PiezaResultadoSerializer(resultado)
-        return JsonResponse(serializer.data)
+        resultado= Fase.objects.filter(ejecucion=ejecucion)
+        serializer = FaseSerializer(resultado, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+def pieza_resultado_list_detail(request, ejecucion):
+
+    if request.method == 'GET':
+        resultado= PiezaResultado.objects.filter(ejecucion=ejecucion)
+        serializer = PiezaResultadoSerializer(resultado, many=True)
+        return JsonResponse(serializer.data, safe=False)
+

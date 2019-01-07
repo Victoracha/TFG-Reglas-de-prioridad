@@ -13,6 +13,12 @@ export  class  APIService {
       
       return  this.httpClient.get(`${this.API_URL}/Pieza/`);
   }
+
+  getPiezaResultado(){
+      
+    return  this.httpClient.get(`${this.API_URL}/pieza/48`);
+}
+
   getEjecucion(){
       
     return  this.httpClient.get(`${this.API_URL}/ejecucion/`);
