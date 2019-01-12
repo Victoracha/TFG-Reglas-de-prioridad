@@ -1,7 +1,7 @@
 from algoritmos.Pieza import Pieza
 from algoritmos.Maquina import  Maquina
 from algoritmos.Executor import  Executor
-from Pieza.models import Ejecucion, PiezaEje, ResultadoGeneral, PiezaResultado
+from Pieza.models import Ejecucion, PiezaEje, ResultadoGeneral, PiezaResultado, Fase
 from django.utils import timezone
 class Control():
     def __init__(self, piezas_maquina, piezas_tiempo, data,n_maquinas=3):
@@ -45,7 +45,7 @@ class Control():
             for num in da:
                 d=0
 
-            #self.guardaPiezas()
+            self.guardaPiezas()
 
             return 0
 
@@ -61,5 +61,13 @@ class Control():
         resultado = ResultadoGeneral(id=e, tiempoMax=self._tiempoMax, tiempoMin=self._tiempoMin,
                                      tiempoMedio=self._tiempoMedio
                                      , SA=self._SA, SR=self._SR, NA=self._NA, NR=self._NR)
-
         resultado.save()
+        for maquina in self._maquinas:
+            for faseResul in maquina.getFases():
+                if faseResul != 0:
+                    coe=faseResul.get_nPieza()*10
+                    fase = Fase( nPieza= p, nPiezaEje=faseResul.get_nPieza(), ejecucion=e, nFase=faseResul.get_nSubpieza(), tiempoRequerido = faseResul.get_tiempoRequerido(),
+                        maquinaNecesaria= faseResul.get_maquinaNecesaria(), tiempoFaseEntrada= faseResul.get_tiempoFaseEntrada(), tiempoFaseSalida= faseResul.get_tiempoFaseSalida()
+                                 , color=coe, brightness=faseResul.get_nPieza()/10)
+                    fase.save()
+

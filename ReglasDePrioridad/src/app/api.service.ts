@@ -28,6 +28,10 @@ getTablaResultados(){
       
     return  this.httpClient.get(`${this.API_URL}/resultado/42/`);
 }
+
+getEjecucionFases(){
+    return  this.httpClient.get(`${this.API_URL}/fase/53/`);
+}
   postDatosEjecucion(fases){
       return this.httpClient.post(`${this.API_URL}/ejecucion/`, fases);
   }

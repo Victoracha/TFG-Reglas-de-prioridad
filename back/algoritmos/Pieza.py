@@ -6,6 +6,7 @@ class Pieza:
         self._tiempoTotal = 0
         self._asignatiempo = True
         self._libreMaquina=True
+        self._tiempoOperacionalTotal=0
 
         self._Te = 0
         self._Ad = 0
@@ -15,7 +16,13 @@ class Pieza:
 
         for i in range ( len (tiempos)):
             fase=Fase(self._nPieza, tiempos[i], maquinas[i], i)
+            self._tiempoOperacionalTotal+= fase.get_tiempoRequerido()
             self._fases.append(fase)
+        self._tiempoOperacionalTotalRestante = self._tiempoOperacionalTotal
+
+        for fase in self._fases:
+            self._tiempoOperacionalTotalRestante-=fase.get_tiempoRequerido()
+            fase.set_tiempoOperacionalRestante(self._tiempoOperacionalTotalRestante)
 
     def getNpieza(self):
         return self._nPieza
@@ -47,6 +54,13 @@ class Pieza:
 
     def get_LibreMaquina(self, libre):
         return self._libreMaquina
+
+    def get_tiempoOperacionalRestante(self):
+        return self._tiempoOperacionalTotalRestante
+
+    def set_tiempoOperacionalRestante(self, tiempo):
+        self._tiempoOperacionalTotalRestante = tiempo
+
 class Fase:
     def __init__(self, nPieza, tiempoRequerido, maquinaNecesaria, nFase):
         self._nPieza=nPieza
@@ -56,6 +70,7 @@ class Fase:
 
         self._tiempoFaseEntrada = 0
         self._tiempoFaseSalida = 0
+        self._tiempoOperacionalTotalRestante=0
 
     def get_nPieza(self):
         return self._nPieza
@@ -66,6 +81,10 @@ class Fase:
     def get_nSubpieza(self):
         return self._nFase
 
+    def get_tiempoFaseEntrada(self):
+        return self._tiempoFaseEntrada
+    def get_tiempoFaseSalida(self):
+        return self._tiempoFaseSalida
     def get_TiempoEntrada(self):
         return self._tiempoFaseEntrada
 
@@ -77,3 +96,9 @@ class Fase:
 
     def set_TiempoSalida(self, tiempo):
         self._tiempoFaseSalida=tiempo
+
+    def get_tiempoOperacionalRestante(self):
+        return self._tiempoOperacionalTotalRestante
+
+    def set_tiempoOperacionalRestante(self, tiempo):
+        self._tiempoOperacionalTotalRestante = tiempo

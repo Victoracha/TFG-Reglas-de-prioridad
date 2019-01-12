@@ -28,5 +28,5 @@ class PiezaResultadoSerializer(serializers.ModelSerializer):
 class FaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fase
-        fields = ('id','nPieza','ejecucion', 'nFase','tiempoRequerido','maquinaNecesaria', 'tiempoFaseEntrada', 'tiempoFaseSalida')
+        fields = ('id','nPieza', 'nPiezaEje','ejecucion', 'nFase','tiempoRequerido','maquinaNecesaria', 'tiempoFaseEntrada', 'tiempoFaseSalida', 'color', 'brightness')
 

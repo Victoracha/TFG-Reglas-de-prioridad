@@ -60,12 +60,15 @@ class ResultadoGeneral(models.Model):
 class Fase(models.Model):
     id=models.AutoField(primary_key=True )
     nPieza=models.ForeignKey(PiezaResultado, on_delete=models.CASCADE)
+    nPiezaEje=models.IntegerField()
     ejecucion = models.ForeignKey(Ejecucion, on_delete=models.CASCADE)
     nFase = models.IntegerField()
     tiempoRequerido = models.FloatField()
     maquinaNecesaria = models.IntegerField()
     tiempoFaseEntrada = models.FloatField()
     tiempoFaseSalida = models.FloatField()
+    color = models.IntegerField()
+    brightness= models.FloatField()
 
     def create(self, validated_data):
 

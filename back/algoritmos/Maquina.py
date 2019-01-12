@@ -19,7 +19,8 @@ class Maquina:
         self._piezasEspera = {}
         for i in range(nPiezas):
             self._piezasEspera[i+1]=False
-
+    def getFases(self):
+        return  self._FasesEjecutadasHisto
     def getEjecucion(self):
         return self._ejecucion
     def getNmaquina(self):
@@ -77,7 +78,7 @@ class Maquina:
             if len(self._faseActualMaquina) == 0:
                 self._faseActualMaquina=[candidato]
                 self._tiempoEjecucionFase = self._tiempoActual
-
+                candidato.set_TiempoEntrada(self._tiempoActual)
             elif self._faseActualMaquina[0].get_tiempoRequerido() > candidato.get_tiempoRequerido():
                 self._faseActualMaquina = [candidato]
                 self._tiempoEjecucionFase = self._tiempoActual
@@ -90,15 +91,23 @@ class Maquina:
             if len(self._faseActualMaquina) == 0:
                 self._faseActualMaquina=[candidato]
                 self._tiempoEjecucionFase = self._tiempoActual
-
+                candidato.set_TiempoEntrada(self._tiempoActual)
             elif self._faseActualMaquina[0].get_tiempoRequerido() < candidato.get_tiempoRequerido():
                 self._faseActualMaquina = [candidato]
                 self._tiempoEjecucionFase = self._tiempoActual
                 candidato.set_TiempoEntrada(self._tiempoActual)
 
+    def mayorTiempoOperacionesRestantes(self):
+        for candidato in self._candidatos:
 
+            if len(self._faseActualMaquina) == 0:
+                self._faseActualMaquina = [candidato]
+                self._tiempoEjecucionFase = self._tiempoActual
 
-
+            elif self._faseActualMaquina[0].get_tiempoOperacionalRestante() < candidato.get_tiempoOperacionalRestante():
+                self._faseActualMaquina = [candidato]
+                self._tiempoEjecucionFase = self._tiempoActual
+                candidato.set_TiempoEntrada(self._tiempoActual)
     def fifo(self):
         self._faseActualMaquina = [self._candidatos[0]]
         self._tiempoEjecucionFase = self._tiempoActual
