@@ -1,0 +1,20 @@
+.btn {
+    padding: 14px 2px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 70px;
+}
+.btn2 {
+    height: 27px;
+    width: 170px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    
+}
+.inputs {
+    display: flex;
+}

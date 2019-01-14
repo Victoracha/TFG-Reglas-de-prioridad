@@ -15,6 +15,7 @@ import { PiezaComponent } from './pieza/pieza.component';
 import { FormFasesComponent } from './form-fases/form-fases.component';
 import { TablaResultadosComponent } from './tabla-resultados/tabla-resultados.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

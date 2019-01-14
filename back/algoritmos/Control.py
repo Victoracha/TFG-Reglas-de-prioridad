@@ -4,7 +4,7 @@ from algoritmos.Executor import  Executor
 from Pieza.models import Ejecucion, PiezaEje, ResultadoGeneral, PiezaResultado, Fase
 from django.utils import timezone
 class Control():
-    def __init__(self, piezas_maquina, piezas_tiempo, data,n_maquinas=3):
+    def __init__(self, piezas_maquina, piezas_tiempo, data=0,n_maquinas=3):
         self._piezas = []
         #Pieza()
         self._n_maquinas=n_maquinas
@@ -40,10 +40,10 @@ class Control():
             self._tiempoMedio /= len(self._piezas)
 
 
-            for da in self._data.values():
+            """for da in self._data.values():
                 d=0
             for num in da:
-                d=0
+                d=0"""
 
             self.guardaPiezas()
 

@@ -19,7 +19,11 @@ export class PiezaComponent implements OnInit {
     
 
    }
-
+   isCollapse = true;
+  toggleState() {
+    let foo = this.isCollapse
+    this.isCollapse = foo === false ? true : false;
+  }
   ngOnInit() {
     this.piezas = this.httpClient.get<Pieza[]>("localhost:8000/Pieza")
     

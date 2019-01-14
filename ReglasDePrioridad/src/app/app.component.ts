@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TFG-Reglas-de-prioridad';
+  
+  isCollapse = true;
+  toggleState() {
+    let foo = this.isCollapse
+    this.isCollapse = foo === false ? true : false;
+  }
 }

@@ -25,10 +25,26 @@ def ejecucion_list(request):
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        print(data)
         piezas_maquina = [[2, 3, 1], [2, 1, 2, 3], [3, 1, 2], [2, 3, 1, 2], [3, 2]]
         piezas_tiempo = [[2, 2, 1], [0.5, 2, 0.5, 2.5], [1.5, 2.5, 1], [1, 2.5, 3, 1], [0.5, 2]]
-        control = Control(piezas_maquina, piezas_tiempo, data)
+        tiempo=[]
+        maquina=[]
+        for pieza in data:
+            print("id")
+            print(pieza['id'])
+            print("maquinas")
+            print(pieza['maquinas'])
+            print("tiempos")
+            print(pieza['tiempos'])
+            tiempo.append(pieza['tiempos'])
+            maquina.append(pieza['maquinas'])
+        print(data)
+        print("maquina")
+        print(maquina)
+        print("tiempo")
+        print(tiempo)
+        control = Control(maquina, tiempo)
+        #control = Control(piezas_maquina, piezas_tiempo)
         control.algoritmo()
         serializer = EjecucionSerializer(data=data)
 
