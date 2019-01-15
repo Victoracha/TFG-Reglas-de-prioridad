@@ -27,9 +27,12 @@ def ejecucion_list(request):
         data = JSONParser().parse(request)
         piezas_maquina = [[2, 3, 1], [2, 1, 2, 3], [3, 1, 2], [2, 3, 1, 2], [3, 2]]
         piezas_tiempo = [[2, 2, 1], [0.5, 2, 0.5, 2.5], [1.5, 2.5, 1], [1, 2.5, 3, 1], [0.5, 2]]
+
+        piezas_maquina = [[2, 3, 1], [2, 1, 2, 3], [3, 1, 2], [2, 3, 1, 2], [3, 2]]
+        piezas_tiempo = [[1, 2, 1], [0.5, 2, 0.5, 2.5], [1.5, 2.5, 1], [1, 2.5, 3, 1], [0.5, 2]]
         tiempo=[]
         maquina=[]
-        for pieza in data:
+        """for pieza in data:
             print("id")
             print(pieza['id'])
             print("maquinas")
@@ -42,15 +45,16 @@ def ejecucion_list(request):
         print("maquina")
         print(maquina)
         print("tiempo")
-        print(tiempo)
-        control = Control(maquina, tiempo)
-        #control = Control(piezas_maquina, piezas_tiempo)
-        control.algoritmo()
-        serializer = EjecucionSerializer(data=data)
+        print(tiempo)"""
+        #control = Control(maquina, tiempo)
 
+        control = Control(piezas_maquina, piezas_tiempo)
+        id=control.algoritmo()
+        serializer = EjecucionSerializer(data=data)
+        resul={"id": id}
         if serializer.is_valid():
             #serializer.save()
-            return JsonResponse(serializer.data, status=201)
+            return JsonResponse(resul, status=201)
         return JsonResponse(serializer.errors, status=400)
 
 @csrf_exempt

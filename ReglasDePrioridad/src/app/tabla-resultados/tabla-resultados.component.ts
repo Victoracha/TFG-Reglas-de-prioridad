@@ -72,7 +72,7 @@ for(let item of this.fase){
     nPiezaEje: item['nPiezaEje'],
     ejecucion: item['ejecucion'],
     maquinaText:  " C.T " +item['maquinaNecesaria'],
-    nFase: item['nFase'],
+    nFase: item['nFase']+1,
     tiempoRequerido: item['tiempoRequerido'],
     maquinaNecesaria: item['maquinaNecesaria'],
     tiempoFaseEntrada: item['tiempoFaseEntrada'],
@@ -96,7 +96,7 @@ categoryAxis.renderer.inversed = true;
 //categoryAxis.renderer.labels.template.fill = am4core.color("#black");
 let valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
 valueAxis.min=0;
-valueAxis.max=10;
+valueAxis.max=12;
 valueAxis.renderer.tooltipLocation = 0;
 valueAxis.title.text="Unidades de tiempo";
 /*let DurationAxis = chart.xAxes.push(new am4charts.DateAxis());

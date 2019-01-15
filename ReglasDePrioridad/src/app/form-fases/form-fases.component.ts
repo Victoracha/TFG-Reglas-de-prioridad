@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { APIService } from '../api.service';
 import {InputDatos} from '../input'
 import { dataLoader } from '@amcharts/amcharts4/core';
+import {Router} from "@angular/router"
 class Ejecutar{
   id: [1000, 20000, 300000]
 }
@@ -12,7 +13,7 @@ class Ejecutar{
 })
 export class FormFasesComponent implements OnInit {
   
-  constructor(private  apiService:  APIService) { APIService}
+  constructor(private  apiService:  APIService, private router: Router) { APIService}
   datosInput: Array<InputDatos> = [];
   dato= new InputDatos();
   
@@ -42,7 +43,9 @@ export class FormFasesComponent implements OnInit {
   var ejecucion={
     id:[1, 2, 3000]
   };
-  this.apiService.postDatosEjecucion(ejecucion).subscribe((Response) => {console.log(Response)})
+  var a=this.apiService.postDatosEjecucion(ejecucion).subscribe((Response) => {console.log(Response)})
+  console.log(a)
+  this.router.navigate(['/tabla-resultados'])
 };
   
 }

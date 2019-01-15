@@ -5,16 +5,14 @@
      <div *ngIf="estado">
         <div class="inputs">
            
-            Máquina <input #Maquina type="number"> <span></span> Tiempo <input #Tiempo type="number">  
+           
          
-            <button type="button" class=" btn btn-sm btn-dark  sharp btn-block " (click)="CrearFase(Maquina.value, Tiempo.value)"  >Crear</button><br/>
             
-          <div *ngIf="valores"> Valor <input #Valor type="number"> </div><div *ngIf="tiempoEsperado"> Tiempo Esperado <input #tiempoes type="number"> </div>
+            
           
-          <br/>
            
            <!-- (click) passes input value to add() and then clears the input -->
-           <button (click)="add(Valor, tiempoes);" >
+           <button class="btn2 btn-dark sharp btn-block " (click)="add(valor, tiempoes)" >
            add
            </button>
         </div>
@@ -26,6 +24,7 @@
             <div *ngIf="valores"> Valor: &nbsp; {{pie.valor}} </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div *ngIf="tiempoEsperado"> Tiempo Esperado: &nbsp;{{pie.tiempoEsperado}} </div>
            <button type="button" class="btn2 btn-dark sharp btn-block " (click)="envia(pie)" >Añade fase</button><br/>
+           <button type="button" class="btn2 btn-dark sharp btn-block " (click)="eliminaOT(pie)" >Elimina OT</button><br/>
            </div>
         </tr>
         
@@ -40,12 +39,24 @@
      </div>
      <div *ngIf="!estado">
      <br>
+     <div *ngIf="valores"> 
+        Valor <input #valor type="number" min=0 value="{{dato.valor}}">
+        <button type="button" class=" btn-dark sharp btn-block " (click)="guardarValor(valor.value)"  >Actualizar</button><br/>
+      
+     </div>
+    
+    <div *ngIf="tiempoEsperado"> 
+       
+      Tiempo Esperado <input #tiempoes type="number" min=0 value="{{dato.tiempoEsperado}}">
+      <button type="button" class=" btn-dark sharp btn-block " (click)="guardarTiempoEsperado(tiempoes.value)"  >Actualizar</button><br/>
+   </div>
      <h3>Introducir nuevo valor</h3>
      <div>
         <div class="inputs">
+
           Máquina <input #Maquina type="number"> <span></span> Tiempo <input #Tiempo type="number">  
          
-          <button type="button" class=" btn btn-sm btn-dark  sharp btn-block " (click)="CrearFase(Maquina.value, Tiempo.value)"  >Crear</button><br/>
+          <button type="button" class=" btn2 btn-sm btn-dark  sharp btn-block " (click)="CrearFase(Maquina.value, Tiempo.value)"  >Crear</button><br/>
         </div>
         <br>
          
@@ -55,15 +66,40 @@
       </div>
 
        
-        
-      <tr *ngFor="let pie of dato.maquinas">
-
-          C.T {{pie}}
-      </tr>
-      <tr *ngFor="let pie of dato.tiempos">
       
-          Tiempo Requerido {{pie}}
-      </tr>
+
+      <div class="col-lg-3"  >
+         <div *ngFor="let pie of dato.maquinas">
+               <div class="inputs">
+               C.T <input #Maquina type="number" min=0 value="{{pie}}" (change)="actualizaMaquina(Maquina.value)">
+            <!--C.T {{pie}}-->
+         </div>
+            <br/>
+         </div>
+      </div>
+      <div class="col-lg-3"  >
+         <div *ngFor="let pie of dato.tiempos">
+               <div class="inputs">
+               TiempoRequerido <input #Tiempo type="number" min=0 value="{{pie}}">
+               
+            <!--Tiempo Requerido {{pie}}-->
+               </div>
+               <br/>
+         </div>
+      </div> 
+
+      <div class="col-lg-6"  >
+            <div *ngFor="let pie of dato.index">
+                  <div class="inputs">
+                     <button type="button" class=" btn2 btn-sm btn-dark  sharp btn-block " (click)="ActualizarFase(Maquina.value, Tiempo.value,pie)"  >Modificar</button><br/>
+                     <button type="button" class=" btn2 btn-sm btn-dark  sharp btn-block " (click)="EliminarFase(Maquina.value, Tiempo.value,pie)"  >Eliminar</button><br/>
+            
+                  </div>
+                  <br/>
+               </div>
+               
+      </div>
+      <br/>
         <!--<button type="button" class=" btn-dark sharp btn-block " (click)="cancelar(dato.id)"  >Cancelar</button><br/>-->
         <button type="button" class=" btn-dark sharp btn-block " (click)="guardar(dato.id)"  >Volver</button><br/>
      </div>

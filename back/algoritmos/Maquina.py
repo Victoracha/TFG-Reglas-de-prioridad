@@ -65,7 +65,10 @@ class Maquina:
     def ejecutarFase(self):
         #self.esLibre()
         if len(self._candidatos) >0 and self._libre==True:
-            self.spt()
+            #self.spt()
+            #self.fifo()
+            #self.llp()
+            self.mayorTiempoOperacionesRestantes()
             self._libre =False
             if len(self._faseActualMaquina) > 0:
                 self._FasesEjecutadasLista.append(self._faseActualMaquina[0])
@@ -103,7 +106,7 @@ class Maquina:
             if len(self._faseActualMaquina) == 0:
                 self._faseActualMaquina = [candidato]
                 self._tiempoEjecucionFase = self._tiempoActual
-
+                candidato.set_TiempoEntrada(self._tiempoActual)
             elif self._faseActualMaquina[0].get_tiempoOperacionalRestante() < candidato.get_tiempoOperacionalRestante():
                 self._faseActualMaquina = [candidato]
                 self._tiempoEjecucionFase = self._tiempoActual
@@ -111,7 +114,7 @@ class Maquina:
     def fifo(self):
         self._faseActualMaquina = [self._candidatos[0]]
         self._tiempoEjecucionFase = self._tiempoActual
-        self._faseActualMaquina.set_TiempoEntrada(self._tiempoActual)
+        self._candidatos[0].set_TiempoEntrada(self._tiempoActual)
 
     def aleatorio(self):
         self._faseActualMaquina = [random.choice(self._candidatos[0])]

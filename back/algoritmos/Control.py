@@ -45,11 +45,12 @@ class Control():
             for num in da:
                 d=0"""
 
-            self.guardaPiezas()
+            id=self.guardaPiezas()
 
-            return 0
+            return id
 
     def guardaPiezas(self):
+
         e = Ejecucion(fecha=timezone.now())
         e.save()
         for pieza in self._piezas:
@@ -62,6 +63,7 @@ class Control():
                                      tiempoMedio=self._tiempoMedio
                                      , SA=self._SA, SR=self._SR, NA=self._NA, NR=self._NR)
         resultado.save()
+
         for maquina in self._maquinas:
             for faseResul in maquina.getFases():
                 if faseResul != 0:
@@ -69,5 +71,6 @@ class Control():
                     fase = Fase( nPieza= p, nPiezaEje=faseResul.get_nPieza(), ejecucion=e, nFase=faseResul.get_nSubpieza(), tiempoRequerido = faseResul.get_tiempoRequerido(),
                         maquinaNecesaria= faseResul.get_maquinaNecesaria(), tiempoFaseEntrada= faseResul.get_tiempoFaseEntrada(), tiempoFaseSalida= faseResul.get_tiempoFaseSalida()
                                  , color=coe, brightness=faseResul.get_nPieza()/10)
-                    fase.save()
 
+                    fase.save()
+        return e.id
