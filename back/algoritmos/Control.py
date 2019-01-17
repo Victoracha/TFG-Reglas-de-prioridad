@@ -73,4 +73,4 @@ class Control():
                                  , color=coe, brightness=faseResul.get_nPieza()/10)
 
                     fase.save()
-        return e.id
+        return e

@@ -73,7 +73,20 @@ class Fase(models.Model):
     def create(self, validated_data):
 
         return ResultadoGeneral.objects.create(**validated_data)
+class DatosInput(models.Model):
+    id =models.AutoField(primary_key=True )
+    ejecucion=models.ForeignKey(Ejecucion, on_delete=models.CASCADE)
+    nPiezaEje = models.IntegerField()
+    nFase = models.IntegerField()
+    tiempoRequerido = models.FloatField()
+    maquinaNecesaria = models.IntegerField()
+    valor = models.IntegerField()
+    tiempoEs = models.FloatField()
+    index = models.IntegerField()
 
+    def create(self, validated_data):
+
+        return DatosInput.objects.create(**validated_data)
 """class MaquinaResultado(models.Model):
     id=models.ForeignKey(Ejecucion, primary_key=True, on_delete=models.CASCADE)
     =models.FloatField()

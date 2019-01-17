@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { APIService } from '../api.service';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
+import { ActivatedRoute } from '@angular/router';
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 //import am4themes_themes/kelly.js from "@amcharts/amcharts4/themes/themes/kelly.js";
@@ -14,10 +15,14 @@ export class TablaResultadosComponent implements OnInit {
   private resultado: Array<object> = [];
   private resultadoPiezas: Array<object> = [];
    fase: Array<object> = [];
+   idEjecucion: number;
   private faseBuena: Array<object> = [];
-  constructor(private apiService: APIService, private zone: NgZone ) { }
+  constructor(private apiService: APIService, private zone: NgZone,  private route: ActivatedRoute ) { }
   
   ngOnInit() {
+    this.idEjecucion = +this.route.snapshot.paramMap.get('id'),
+    console.log(this.idEjecucion),
+    //console.log(id);
     this.getResultados(),
     console.log(this.fase)
     
@@ -25,17 +30,17 @@ export class TablaResultadosComponent implements OnInit {
   }
   getResultados(){
     
-    this.apiService.getPiezaResultado().subscribe((data: Array<object>) => {
+    this.apiService.getPiezaResultado(this.idEjecucion).subscribe((data: Array<object>) => {
       
       this.resultadoPiezas = data;
       console.log(data);
     });
-  this.apiService.getTablaResultados().subscribe((data: Array<object>) => {
+  this.apiService.getTablaResultados(this.idEjecucion).subscribe((data: Array<object>) => {
     
     this.resultado = [data];
     console.log(data);
   });
-  this.apiService.getEjecucionFases().subscribe((data: Array<object>) => {
+  this.apiService.getEjecucionFases(this.idEjecucion).subscribe((data: Array<object>) => {
       
      this.fase = data;
     console.log(data);

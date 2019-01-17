@@ -24,7 +24,7 @@
             <div *ngIf="valores"> Valor: &nbsp; {{pie.valor}} </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div *ngIf="tiempoEsperado"> Tiempo Esperado: &nbsp;{{pie.tiempoEsperado}} </div>
            <button type="button" class="btn2 btn-dark sharp btn-block " (click)="envia(pie)" >Añade fase</button><br/>
-           <button type="button" class="btn2 btn-dark sharp btn-block " (click)="eliminaOT(pie)" >Elimina OT</button><br/>
+           <button type="button" class="btn2 btn-dark sharp btn-block " (click)="eliminaOT(pie.id)" >Elimina OT</button><br/>
            </div>
         </tr>
         
@@ -34,7 +34,10 @@
         <button (click)="createEjecucion()" >
         Create Contact
         </button>
-        
+        <div *ngIf="verEjecucion">
+         <button type="button" class="btn2 btn-dark sharp btn-block " routerLink="/tabla-resultados/{{idEje}}"  >Ver ejecución</button><br/>
+      
+        </div>
         
      </div>
      <div *ngIf="!estado">

@@ -3,6 +3,7 @@ import {InputDatos} from '../input';
 
 import { APIService } from '../api.service';
 import { PiezaComponent } from '../pieza/pieza.component';
+import { DataSource } from '@amcharts/amcharts4/core';
 
 @Component({
   selector: 'app-input-manual',
@@ -17,11 +18,51 @@ export class InputManualComponent implements OnInit {
   element = <HTMLInputElement> document.getElementById("is3dCheckBox");
   private valores=true;
   private tiempoEsperado=true;
+  private verEjecucion=false;
   private maquinetemp=0;
+  private getEjecucion=true;
   private tiempotemp=0;
+  datoCargaIds=[];
+   idEje: number=2;
   constructor(private apiService: APIService) { }
 
   ngOnInit() {
+    if(this.getEjecucion)
+      this.inicializaDatos(123);
+    
+      
+  }
+  inicializaDatos(idEje){
+    this.apiService.getDatosInput(idEje).subscribe((data: Array<object>) => {
+      console.log(data);
+      for (var elemento of data){
+        let dato= new InputDatos();
+        if(this.datoCargaIds.includes(elemento['nPiezaEje'])){
+          this.datosInput[elemento['nPiezaEje']-1].maquinas.push(elemento['maquinaNecesaria']);
+          this.datosInput[elemento['nPiezaEje']-1].tiempos.push(elemento['tiempoRequerido']);
+          this.datosInput[elemento['nPiezaEje']-1].index.push(elemento['index']);
+        }else{
+          this.datoCargaIds.push(elemento['nPiezaEje']);
+          console.log(this.datoCargaIds);
+          dato.id=elemento['nPiezaEje'];
+          dato.valor=elemento['valor'];
+          dato.tiempoEsperado=elemento['tiempoEs'];
+        
+          dato.maquinas.push(elemento['maquinaNecesaria']);
+          dato.tiempos.push(elemento['tiempoRequerido']);
+          dato.index.push(elemento['index']);
+          this.datosInput.push(dato);
+        }
+        console.log(this.datoCargaIds);
+        
+
+      }
+      
+      console.log(this.dato);
+      console.log(this.datosInput);
+    });
+    
+      
   }
   add(valor, tiempoesperado): void {
     let dato= new InputDatos();
@@ -135,6 +176,20 @@ export class InputManualComponent implements OnInit {
   
   createEjecucion(){
     
-    this.apiService.postDatosEjecucion(this.datosInput).subscribe((Response) => {console.log(Response)})
+    var id=this.apiService.postDatosEjecucion(this.datosInput).subscribe((Response) => {console.log(Response);this.idEje=+Response['id'];
+      console.log(Response['id']);
+      var tipo=typeof Response['id'];
+      if(tipo == "number"){
+        this.verEjecucion=true;
+      }
+      console.log(this.idEje);
+    })
+      
+    /*this.idEje=+id;
+    var tipo=typeof id;
+    if(tipo == "number"){
+      this.verEjecucion=true;
+    }*/
+    //this.apiService.enviaEjecucion( id );
   };
 }

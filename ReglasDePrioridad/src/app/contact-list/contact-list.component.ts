@@ -30,11 +30,7 @@ export class ContactListComponent implements OnInit {
       this.ejecucion = data;
       console.log(data);
     });
-    this.apiService.getEjecucionFases().subscribe((data: Array<object>) => {
-      
-      this.fase = data;
-      console.log(data);
-    });
+    
   }
 
 }

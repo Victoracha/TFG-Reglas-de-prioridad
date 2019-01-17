@@ -19,9 +19,9 @@ export  class  APIService {
       return  this.httpClient.get(`${this.API_URL}/Pieza/`);
   }
 
-  getPiezaResultado(){
+  getPiezaResultado(idEjecucion: number){
       
-    return  this.httpClient.get(`${this.API_URL}/pieza/48`);
+    return  this.httpClient.get(`${this.API_URL}/pieza/`+ idEjecucion);
 }
 
   getEjecucion(){
@@ -29,16 +29,23 @@ export  class  APIService {
     return  this.httpClient.get(`${this.API_URL}/ejecucion/`);
 }
 
-getTablaResultados(){
+getTablaResultados(idEjecucion: number){
       
-    return  this.httpClient.get(`${this.API_URL}/resultado/42/`);
+    return  this.httpClient.get(`${this.API_URL}/resultado/`+ idEjecucion);
 }
 
-getEjecucionFases(){
-    return  this.httpClient.get(`${this.API_URL}/fase/78/`);
+getEjecucionFases(idEjecucion: number){
+    return  this.httpClient.get(`${this.API_URL}/fase/`+ idEjecucion);
+}
+
+getDatosInput(idEjecucion: number){
+    return  this.httpClient.get(`${this.API_URL}/datosInput/`+ idEjecucion);
 }
 postDatosEjecucion(fases){
       return this.httpClient.post(`${this.API_URL}/ejecucion/`, fases);
   }
-
+  enviaEjecucion(id: number){
+      return id;
+  }
+  
 }

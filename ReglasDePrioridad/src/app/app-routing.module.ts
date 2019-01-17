@@ -23,7 +23,8 @@ const routes: Routes = [
   },
   { path: 'home', component: HomeComponent },
   { path: 'form-fases', component: FormFasesComponent },
-  { path: 'tabla-resultados', component: TablaResultadosComponent }
+  { path: 'tabla-resultados', component: TablaResultadosComponent },
+  { path: 'tabla-resultados/:id', component: TablaResultadosComponent }
   //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 

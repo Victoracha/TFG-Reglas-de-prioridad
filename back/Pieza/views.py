@@ -14,6 +14,9 @@ from Pieza.serializers import FaseSerializer
 from Pieza.models import PiezaResultado
 from Pieza.serializers import PiezaResultadoSerializer
 from algoritmos.Control import Control
+
+from Pieza.models import DatosInput
+from Pieza.serializers import DatosInputSerializer
 import pdb
 @csrf_exempt
 def ejecucion_list(request):
@@ -32,7 +35,7 @@ def ejecucion_list(request):
         piezas_tiempo = [[1, 2, 1], [0.5, 2, 0.5, 2.5], [1.5, 2.5, 1], [1, 2.5, 3, 1], [0.5, 2]]
         tiempo=[]
         maquina=[]
-        """for pieza in data:
+        for pieza in data:
             print("id")
             print(pieza['id'])
             print("maquinas")
@@ -45,16 +48,32 @@ def ejecucion_list(request):
         print("maquina")
         print(maquina)
         print("tiempo")
-        print(tiempo)"""
+        print(tiempo)
         #control = Control(maquina, tiempo)
 
         control = Control(piezas_maquina, piezas_tiempo)
-        id=control.algoritmo()
-        serializer = EjecucionSerializer(data=data)
-        resul={"id": id}
+        ejecucion=control.algoritmo()
+        id=ejecucion.id
+        for pieza in data:
+            for i in range(len(pieza['maquinas'])):
+                datosInput= DatosInput(ejecucion=ejecucion, nPiezaEje=pieza['id'],nFase=i, tiempoRequerido=pieza['tiempos'][i],maquinaNecesaria=pieza['maquinas'][i], valor= pieza['valor'],
+                                       tiempoEs=pieza['tiempoEsperado'] , index=pieza['index'][i])
+                datosInput.save()
+        print(datosInput)
+
+        print(id)
+        resul = {"id": id}
+        serializer = EjecucionSerializer(data=resul)
+
+        print(type(id))
+        if type(id)=='int':
+            return JsonResponse(resul, status=201)
         if serializer.is_valid():
             #serializer.save()
             return JsonResponse(resul, status=201)
+        if type(id)=='int':
+            return JsonResponse(resul, status=201)
+
         return JsonResponse(serializer.errors, status=400)
 
 @csrf_exempt
@@ -84,6 +103,12 @@ def fase_list_detail(request, ejecucion):
     if request.method == 'GET':
         resultado= Fase.objects.filter(ejecucion=ejecucion)
         serializer = FaseSerializer(resultado, many=True)
+        return JsonResponse(serializer.data, safe=False)
+def datosInput_list_detail(request, ejecucion):
+
+    if request.method == 'GET':
+        resultado= DatosInput.objects.filter(ejecucion=ejecucion)
+        serializer = DatosInputSerializer(resultado, many=True)
         return JsonResponse(serializer.data, safe=False)
 
 def pieza_resultado_list_detail(request, ejecucion):
