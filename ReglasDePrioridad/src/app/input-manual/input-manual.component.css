@@ -25,6 +25,10 @@
     align-content: center;
     
 }
-.inputs {
-    display: flex;
-}
+#miTablaPersonalizada th{
+    width: 20px;
+    overflow: auto;
+    border: 0px solid;
+    background: white;
+    color: black;
+  }

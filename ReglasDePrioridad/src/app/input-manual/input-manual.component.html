@@ -3,42 +3,59 @@
   <div class="col-lg-8"  >
       <input id="is3dCheckBox" type="checkbox" checked="checked" />
      <div *ngIf="estado">
-        <div class="inputs">
-           
-           
-         
-            
-            
-          
-           
-           <!-- (click) passes input value to add() and then clears the input -->
-           <button class="btn2 btn-dark sharp btn-block " (click)="add(valor, tiempoes)" >
-           add
-           </button>
-        </div>
+        
         
         <br/>
-        <tr *ngFor="let pie of datosInput">
-            <div class="inputs">
-            <h5>O.T &nbsp; {{pie.id}}</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div *ngIf="valores"> Valor: &nbsp; {{pie.valor}} </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div *ngIf="tiempoEsperado"> Tiempo Esperado: &nbsp;{{pie.tiempoEsperado}} </div>
-           <button type="button" class="btn2 btn-dark sharp btn-block " (click)="envia(pie)" >Añade fase</button><br/>
-           <button type="button" class="btn2 btn-dark sharp btn-block " (click)="eliminaOT(pie.id)" >Elimina OT</button><br/>
-           </div>
-        </tr>
         
+
+        <div class="inputs">     
+            <!-- (click) passes input value to add() and then clears the input -->
+            
+         </div>
+
+         <div class="table-responsive-xl"> 
+               <table   class="table">
+                   
+                   <thead>
+                     <tr id="miTablaPersonalizada">
+                       
+                       <th scope="col"><h4>O.T.</h4></th>
+                       
+                       <th scope="col"><h4></h4></th>
+                       <th scope="col"></th>    
+                           
+                     </tr>
+                   </thead>
+                   <tbody>          
+                        <tr *ngFor="let pie of datosInput">
+                              
+                           <th><h5>O.T &nbsp; {{pie.id}}</h5></th>
+                              <!--div *ngIf="valores"> Valor: &nbsp; {{pie.valor}} </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <div *ngIf="tiempoEsperado"> Tiempo Esperado: &nbsp;{{pie.tiempoEsperado}} </div>-->
+                           <th><button type="button" class="btn2 btn-dark sharp btn-block " (click)="envia(pie)" >Añade fase</button></th>
+                           <th><button type="button" class="btn2 btn-dark sharp btn-block " (click)="eliminaOT(pie.id)" >Elimina OT</button></th>
+                            
+                          </tr>
+                     
+                   </tbody>
+                 </table>
+               </div>
+         <button class="btn2 btn-dark sharp btn-block " (click)="add(valor, tiempoes)" >
+               Añadir
+               </button>
+      <br><br><br><br><br><br>
+      <div *ngIf="controlEjecucion">      
         <h1>
-           Create Contact
+           Ejecutar
         </h1>
-        <button (click)="createEjecucion()" >
+        <button type="button" class="btn2 btn-dark sharp btn-block"(click)="createEjecucion()" >
         Create Contact
         </button>
-        <div *ngIf="verEjecucion">
-         <button type="button" class="btn2 btn-dark sharp btn-block " routerLink="/tabla-resultados/{{idEje}}"  >Ver ejecución</button><br/>
+        <div  *ngIf="verEjecucion">
+         <button type="button" class="btn2 btn-dark sharp btn-block " routerLink="/tabla-resultados/{{idEje}}">Ver ejecución</button><br/>
       
         </div>
-        
+      </div>  
      </div>
      <div *ngIf="!estado">
      <br>

@@ -1,0 +1,19 @@
+.inputs {
+    display: flex;
+  }
+  #miTablaPersonalizada th{
+    width: 400px;
+    overflow: auto;
+    border: 0px solid;
+    background: white;
+    color: black;
+  }
+  .btn2 {
+    height: 50px;
+    width: 170px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    
+}

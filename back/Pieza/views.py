@@ -49,9 +49,11 @@ def ejecucion_list(request):
         print(maquina)
         print("tiempo")
         print(tiempo)
-        #control = Control(maquina, tiempo)
+        control = Control(maquina, tiempo)
 
-        control = Control(piezas_maquina, piezas_tiempo)
+
+        #control = Control(piezas_maquina, piezas_tiempo)
+
         ejecucion=control.algoritmo()
         id=ejecucion.id
         for pieza in data:

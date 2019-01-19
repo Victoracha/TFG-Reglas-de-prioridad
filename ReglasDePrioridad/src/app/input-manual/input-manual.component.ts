@@ -4,6 +4,7 @@ import {InputDatos} from '../input';
 import { APIService } from '../api.service';
 import { PiezaComponent } from '../pieza/pieza.component';
 import { DataSource } from '@amcharts/amcharts4/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-input-manual',
@@ -21,14 +22,17 @@ export class InputManualComponent implements OnInit {
   private verEjecucion=false;
   private maquinetemp=0;
   private getEjecucion=true;
+  private idEjecucionAtras=0;
   private tiempotemp=0;
+  private controlEjecucion=false;
   datoCargaIds=[];
    idEje: number=2;
-  constructor(private apiService: APIService) { }
+  constructor(private apiService: APIService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    if(this.getEjecucion)
-      this.inicializaDatos(123);
+    this.idEjecucionAtras = +this.route.snapshot.paramMap.get('id');
+    if(this.idEjecucionAtras > 0)
+      this.inicializaDatos(this.idEjecucionAtras);
     
       
   }
@@ -81,6 +85,7 @@ export class InputManualComponent implements OnInit {
       
       dato.maquinas=[];
       dato.tiempos=[];
+      this.controlEjecucion=true;
       this.datosInput.push(dato);
     }else{
       dato.id = this.datosInput[this.datosInput.length-1].id +1;
@@ -96,14 +101,14 @@ export class InputManualComponent implements OnInit {
   eliminaOT(index){
     
     this.datosInput.splice(index.id-1,1);
-    
-    for (var _i = index.id-1; _i < this.datosInput.length; _i++) {
-      console.log(this.datosInput[_i]);
-      this.datosInput[_i].id=_i+1;
+    let i=1;
+    for(let dato of this.datosInput){
+      dato.id=i;
+      i++;
     }
     console.log(this.datosInput);
-  }
 
+  }
   envia(ot): void {
     this.estado=false;
     this.dato=ot;

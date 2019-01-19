@@ -1,0 +1,49 @@
+<div class="col-lg-3"  >
+    
+  </div>
+  <div class="col-lg-8 "  >
+      
+      <h1>Ejecuciones Registradas</h1>
+        <br>
+         
+            <div class="table-responsive-xl"> 
+            <table   class="table">
+                
+                <thead>
+                  <tr id="miTablaPersonalizada">
+                    
+                    <th scope="col"><h4>Número de ejecución</h4></th>
+                    
+                    <th scope="col"><h4>Fecha de ejecución</h4></th>
+                    <th scope="col"></th>
+                    
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                   
+                      <tr *ngFor="let pie of ejecucion">
+                          
+                              <td><h4>{{pie.id}}</h4></td>
+                              <td><h4>{{pie.fecha | date:"short"}}</h4></td>
+                        
+                        <div *ngIf="esEjecucion">
+                            <td><button type="button" class="btn2 btn-dark sharp btn-block " routerLink="/input-manual/{{pie.id}}"  >Ejecutar</button></td><br/>
+                        </div>
+                        <div *ngIf="!esEjecucion">
+                            <td><button type="button" class="btn2 btn-dark sharp btn-block " routerLink="/tabla-resultados/{{pie.id}}">Ver Resultado</button></td><br/>
+                          </div>
+                        
+                        </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+    </div>
+
+    <div class="col-lg-1"  >
+    
+      </div>
+
+      

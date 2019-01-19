@@ -14,6 +14,7 @@ import { HttpClientModule } from  '@angular/common/http';
 import { PiezaComponent } from './pieza/pieza.component';
 import { FormFasesComponent } from './form-fases/form-fases.component';
 import { TablaResultadosComponent } from './tabla-resultados/tabla-resultados.component';
+import { HistorialBaseDatosComponent } from './historial-base-datos/historial-base-datos.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { TablaResultadosComponent } from './tabla-resultados/tabla-resultados.co
     ContactListComponent,
     PiezaComponent,
     FormFasesComponent,
-    TablaResultadosComponent
+    TablaResultadosComponent,
+    HistorialBaseDatosComponent
     
   ],
   imports: [

@@ -111,6 +111,9 @@ DurationAxis.max=20;*/
 let series1 = chart.series.push(new am4charts.ColumnSeries());
 series1.columns.template.width = am4core.percent(80);
 series1.columns.template.tooltipText = "Número de Pieza {nPiezaEje} - Número de Fase {nFase} - C.T {maquinaNecesaria} - Tiempor Requerido {tiempoRequerido}";
+//series1.columns.template.textDecoration="Número de Pieza {nPiezaEje} - Número de Fase {nFase} - C.T {maquinaNecesaria} - Tiempor Requerido {tiempoRequerido}";
+//series1.itemReaderText="Número de Pieza {nPiezaEje} - Número de Fase {nFase} - C.T {maquinaNecesaria} - Tiempor Requerido {tiempoRequerido}";
+
 //series1.dataFields.valueX=2;
 //series1.dataFields.categoryY = "nFase";
 series1.dataFields.openValueX="tiempoFaseEntrada";

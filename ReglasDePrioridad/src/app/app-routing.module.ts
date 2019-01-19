@@ -8,10 +8,12 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { PiezaComponent } from './pieza/pieza.component';
 import { FormFasesComponent } from './form-fases/form-fases.component';
 import { TablaResultadosComponent } from './tabla-resultados/tabla-resultados.component';
+import { HistorialBaseDatosComponent } from './historial-base-datos/historial-base-datos.component';
 
 const routes: Routes = [
   { path: 'input', component: MenuInputEjecucionComponent },
-  { path: 'input-manual', component: InputManualComponent },
+  { path: 'historial/:id', component: HistorialBaseDatosComponent },
+  { path: 'input-manual/:id', component: InputManualComponent },
   
   {
     path:  'contacts',
