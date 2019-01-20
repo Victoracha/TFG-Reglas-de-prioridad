@@ -14,45 +14,12 @@
     
       </div>
       <div class="col-lg-8 "  >
-
+        <h1 class="texto">Gráfica de ejecución</h1>
         <div id="chartdiv" style="width: 100%; height: 450px"></div>
-          
-          <div class="table-responsive-xl">
-            <table   class="table table-bordered ">
-              <thead>
-                <tr id="miTablaPersonalizada">
-                  
-                  <th scope="col">Tiempo Máximo</th>
-                  <th scope="col">Tiempo Mínimo</th>
-                  <th scope="col">Tiempo Medio</th>
-                  <th scope="col">SA</th>
-                  <th scope="col">SR</th>
-                  <th scope="col">NA</th>
-                  <th scope="col">NR</th>
-                  
-                </tr>
-              </thead>
-              <tbody>
-                
-                  <tr *ngFor="let pie of resultado">
-                    
-                    
-                    
-                    <td>{{ pie.tiempoMax}} </td>
-                    <td>{{ pie.tiempoMin}}</td>
-                    <td>{{ pie.tiempoMedio}}</td>
-                    <td>{{ pie.SA}} </td>
-                    <td>{{ pie.SR}}</td>
-                    <td>{{ pie.NA}}</td>
-                    <td>{{ pie.NR}}</td>
-                    
-                  </tr>
-                
-                
-              </tbody>
-            </table>
-          </div>
-
+        <br>
+          <br>
+        
+          <h1 class="texto">Resultados Detalle</h1>
           <div class="table-responsive-xl">
               <table   class="table table-bordered ">
                 <thead>
@@ -88,7 +55,47 @@
                 </tbody>
               </table>
             </div>
-
+            <br>
+          <br>
+            <h1 class="texto">Resultados Totales</h1>
+        <br>
+          <br>
+          <div class="table-responsive-xl">
+            <table   class="table table-bordered ">
+              <thead>
+                <tr id="miTablaPersonalizada">
+                  
+                  <th scope="col">Tiempo Máximo</th>
+                  <th scope="col">Tiempo Mínimo</th>
+                  <th scope="col">Tiempo Medio</th>
+                  <th scope="col">SA</th>
+                  <th scope="col">SR</th>
+                  <th scope="col">NA</th>
+                  <th scope="col">NR</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr *ngFor="let pie of resultado">
+                    
+                    
+                    
+                    <td>{{ pie.tiempoMax}} </td>
+                    <td>{{ pie.tiempoMin}}</td>
+                    <td>{{ pie.tiempoMedio}}</td>
+                    <td>{{ pie.SA}} </td>
+                    <td>{{ pie.SR}}</td>
+                    <td>{{ pie.NA}}</td>
+                    <td>{{ pie.NR}}</td>
+                    
+                  </tr>
+                
+                
+              </tbody>
+            </table>
+          </div>
+          
       </div>
       <div class="col-lg-1"  >
           

@@ -1,6 +1,6 @@
 <div class="col-lg-3"  >
   </div>
-  <div class="col-lg-8"  >
+  <div class="col-lg-9"  >
       <input id="is3dCheckBox" type="checkbox" checked="checked" />
      <div *ngIf="estado">
         
@@ -23,7 +23,10 @@
                        
                        <th scope="col"><h4></h4></th>
                        <th scope="col"></th>    
-                           
+                       <th scope="col"></th> 
+                       <th scope="col"></th> 
+                       <th scope="col"></th> 
+                       <th scope="col"></th> 
                      </tr>
                    </thead>
                    <tbody>          
@@ -32,15 +35,16 @@
                            <th><h5>O.T &nbsp; {{pie.id}}</h5></th>
                               <!--div *ngIf="valores"> Valor: &nbsp; {{pie.valor}} </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <div *ngIf="tiempoEsperado"> Tiempo Esperado: &nbsp;{{pie.tiempoEsperado}} </div>-->
-                           <th><button type="button" class="btn2 btn-dark sharp btn-block " (click)="envia(pie)" >Añade fase</button></th>
-                           <th><button type="button" class="btn2 btn-dark sharp btn-block " (click)="eliminaOT(pie.id)" >Elimina OT</button></th>
-                            
+                           <th><button type="button" class="btn2 btn-sm btn-dark  sharp btn-block " (click)="envia(pie)" >Añade fase</button></th>
+                           <th><button type="button" class="btn2 btn-sm btn-dark  sharp btn-block " (click)="eliminaOT(pie.id)" >Elimina OT</button></th>
+                            <th></th>
+                            <th></th>
                           </tr>
                      
                    </tbody>
                  </table>
                </div>
-         <button class="btn2 btn-dark sharp btn-block " (click)="add(valor, tiempoes)" >
+         <button class="btn2 btn-sm btn-dark  sharp btn-block" (click)="add(valor, tiempoes)" >
                Añadir
                </button>
       <br><br><br><br><br><br>
@@ -48,97 +52,173 @@
         <h1>
            Ejecutar
         </h1>
-        <button type="button" class="btn2 btn-dark sharp btn-block"(click)="createEjecucion()" >
+        <button type="button" class="btn2 btn-sm btn-dark  sharp btn-block"(click)="createEjecucion()" >
         Create Contact
         </button>
         <div  *ngIf="verEjecucion">
-         <button type="button" class="btn2 btn-dark sharp btn-block " routerLink="/tabla-resultados/{{idEje}}">Ver ejecución</button><br/>
+         <button type="button" class="btn2 btn-sm btn-dark  sharp btn-block" routerLink="/tabla-resultados/{{idEje}}">Ver ejecución</button><br/>
       
         </div>
       </div>  
      </div>
+
+
      <div *ngIf="!estado">
-     <br>
-     <div *ngIf="valores"> 
-        Valor <input #valor type="number" min=0 value="{{dato.valor}}">
-        <button type="button" class=" btn-dark sharp btn-block " (click)="guardarValor(valor.value)"  >Actualizar</button><br/>
-      
-     </div>
-    
-    <div *ngIf="tiempoEsperado"> 
-       
-      Tiempo Esperado <input #tiempoes type="number" min=0 value="{{dato.tiempoEsperado}}">
-      <button type="button" class=" btn-dark sharp btn-block " (click)="guardarTiempoEsperado(tiempoes.value)"  >Actualizar</button><br/>
-   </div>
-     <h3>Introducir nuevo valor</h3>
-     <div>
-        <div class="inputs">
+         <br>
+         <div *ngIf="valores"> 
 
-          Máquina <input #Maquina type="number"> <span></span> Tiempo <input #Tiempo type="number">  
-         
-          <button type="button" class=" btn2 btn-sm btn-dark  sharp btn-block " (click)="CrearFase(Maquina.value, Tiempo.value)"  >Crear</button><br/>
-        </div>
-        <br>
-         
-         <!-- (click) passes input value to add() and then clears the input -->
-         
-         
-      </div>
 
-       
-      
-
-      <div class="col-lg-3"  >
-         <div *ngFor="let pie of dato.maquinas">
-               <div class="inputs">
-               C.T <input #Maquina type="number" min=0 value="{{pie}}" (change)="actualizaMaquina(Maquina.value)">
-            <!--C.T {{pie}}-->
+               <div class="table-responsive-xl"> 
+                     <table class="table">
+                         
+                         <thead>
+                           <tr id="miTablaPersonalizada2">
+                             
+                             <th scope="col"><h4>Valor</h4></th>
+                             
+                             <th scope="col"><h4></h4></th>
+                             <th scope="col"></th>    
+                             <th scope="col"></th> 
+                             <th scope="col"></th> 
+                             
+                           </tr>
+                         </thead>
+                         <tbody>          
+                              <tr *ngFor="let pie of datosInput">
+                                    
+                                   
+                                 <th><input #valor type="number" min=0 value="{{dato.valor}}"></th>    
+                                  <th><button type="button" class="btn2 btn-sm btn-dark sharp btn-block " (click)="guardarValor(valor.value)"  >Actualizar</button></th>
+                                  <th></th>
+                                  <th></th>
+                                </tr>
+                           
+                         </tbody>
+                       </table>
+                     </div>
          </div>
-            <br/>
-         </div>
-      </div>
-      <div class="col-lg-3"  >
-         <div *ngFor="let pie of dato.tiempos">
-               <div class="inputs">
-               TiempoRequerido <input #Tiempo type="number" min=0 value="{{pie}}">
-               
-            <!--Tiempo Requerido {{pie}}-->
-               </div>
-               <br/>
-         </div>
-      </div> 
+        
+        <div *ngIf="tiempoEsperado"> 
+           
+         <div class="table-responsive-xl"> 
+            <table class="table">
+                
+                <thead>
+                  <tr id="miTablaPersonalizada2">
+                    
+                    <th scope="col"><h4>Tiempo Esperado</h4></th>
+                    
+                    <th scope="col"><h4></h4></th>
+                    <th scope="col"></th>    
+                    <th scope="col"></th> 
+                    <th scope="col"></th> 
+                    
+                  </tr>
+                </thead>
+                <tbody>          
+                     <tr *ngFor="let pie of datosInput">
+                           
+                          
+                        <th><input #tiempoes type="number" min=0 value="{{dato.tiempoEsperado}}"></th>    
+                        
+                         <th><button type="button" class="btn2 btn-sm btn-dark sharp btn-block " (click)="guardarTiempoEsperado(tiempoes.value)"  >Actualizar</button></th>
+                         <th></th>
+                       </tr>
+                  
+                </tbody>
+              </table>
+            </div>
 
-      <div class="col-lg-6"  >
-            <div *ngFor="let pie of dato.index">
-                  <div class="inputs">
-                     <button type="button" class=" btn2 btn-sm btn-dark  sharp btn-block " (click)="ActualizarFase(Maquina.value, Tiempo.value,pie)"  >Modificar</button><br/>
-                     <button type="button" class=" btn2 btn-sm btn-dark  sharp btn-block " (click)="EliminarFase(Maquina.value, Tiempo.value,pie)"  >Eliminar</button><br/>
             
+            <h3>Introducir nuevos parámetros</h3>
+            <div class="table-responsive-xl"> 
+               <table class="table">
+                   
+                   <thead>
+                     <tr id="miTablaPersonalizada2">
+                       
+                       <th scope="col"><h4>Máquina</h4></th>
+                       
+                       <th scope="col"><h4>Tiempo</h4></th>
+                       <th scope="col"></th> 
+                       <th scope="col"></th>      
+                       <th scope="col"></th>  
+                       
+                     </tr>
+                   </thead>
+                   <tbody>          
+                        <tr *ngFor="let pie of datosInput">
+                              
+                             
+                           <th> <input #Maquina type="number"></th>    
+                           
+                            <th> <input #Tiempo type="number">  </th>
+                            <th><button type="button" class=" btn2 btn-sm btn-dark  sharp btn-block " (click)="CrearFase(Maquina.value, Tiempo.value)"  >Crear</button><br/></th>
+                          </tr>
+                     
+                   </tbody>
+                 </table>
+               </div>
+          
+               <h3>Parámetros</h3>
+       </div>
+
+
+       
+
+
+       
+          <br/>
+            <!--<button type="button" class=" btn-dark sharp btn-block " (click)="cancelar(dato.id)"  >Cancelar</button><br/>-->
+           
+         </div>
+      </div>
+      <!--<div class="col-lg-1"  >
+      </div>-->
+      <div *ngIf="!estado">
+         <div class="col-lg-3"  >
+         </div>
+          <div class="col-lg-2"  >
+            
+            <div *ngFor="let pie of dato.maquinas">
+                 
+                  C.T <input #Maquina type="number" min=0 value="{{pie}}" (change)="actualizaMaquina(Maquina.value)">
+                  <br/>
+                  <br/>
+                  <br/>
+            </div>
+            <button type="button" class="btn2 btn-sm btn-dark sharp btn-block " (click)="guardar(dato.id)"  >Volver</button><br/>
+
+            </div>
+         
+         <div class="col-lg-2"  >
+            <div *ngFor="let pie of dato.tiempos">
+
+                  Tiempo <input #Tiempo type="number" min=0 value="{{pie}}" (change)="actualizaTiempo(Tiempo.value)">
+                  <br/>
+                  <br/>
+                  <br/>
+            </div>
+         </div> 
+   
+         <div class="col-lg-2"  >
+               <div *ngFor="let pie of dato.index">
+                   
+                        <button type="button" class=" btn2 btn-sm btn-dark  sharp btn-block " (click)="ActualizarFase(0, 2,pie)"  >Modificar</button><br/>
+                   
+                     <br/>
                   </div>
+               </div>
+         <div class="col-lg-1"  >
+            <div *ngFor="let pie of dato.index">
+                 
+                        <button type="button" class=" btn2 btn-sm btn-dark  sharp btn-block " (click)="EliminarFase(pie)"  >Eliminar</button><br/>
+            
                   <br/>
                </div>
-               
-      </div>
-      <br/>
-        <!--<button type="button" class=" btn-dark sharp btn-block " (click)="cancelar(dato.id)"  >Cancelar</button><br/>-->
-        <button type="button" class=" btn-dark sharp btn-block " (click)="guardar(dato.id)"  >Volver</button><br/>
-     </div>
-  </div>
-  <div class="col-lg-1"  >
-  </div>
-
-
-<!--</div>
-
-<tr *ngFor="let pie of dato.tiempos">
-
-    C.T {{pie}}
-</tr>
-<tr *ngFor="let pie of dato.tiempos">
-
-    C.T {{pie}}
-</tr>
-</div>
-</div>
-<div class="col-lg-1"  >
-</div>-->
+                        
+                  
+         </div>
+      </div> 
+         
+      

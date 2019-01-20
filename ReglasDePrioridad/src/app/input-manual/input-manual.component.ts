@@ -21,9 +21,12 @@ export class InputManualComponent implements OnInit {
   private tiempoEsperado=true;
   private verEjecucion=false;
   private maquinetemp=0;
+  private tiempotemp=0;
+  private haCambiadoMaq=false;
+  private haCambiadoTem=false;
   private getEjecucion=true;
   private idEjecucionAtras=0;
-  private tiempotemp=0;
+  
   private controlEjecucion=false;
   datoCargaIds=[];
    idEje: number=2;
@@ -159,17 +162,25 @@ export class InputManualComponent implements OnInit {
 
   ActualizarFase(Maquina, Tiempo, index){
     console.log(index)
-    this.dato.maquinas[index]=this.maquinetemp;
-    this.dato.tiempos[index]=+Tiempo;
+    if (this.haCambiadoMaq)
+      this.dato.maquinas[index]=+this.maquinetemp;
+    if (this.haCambiadoTem)
+      this.dato.tiempos[index]=+this.tiempotemp;
     console.log(this.dato);
     console.log(this.maquinetemp);
     console.log(index)
   }
   actualizaMaquina(maquina){
     this.maquinetemp=+maquina;
-    
+    this.haCambiadoMaq=true;
   }
-  EliminarFase(Maquina, Tiempo,index){
+
+  actualizaTiempo(tiempo){
+    this.tiempotemp=+tiempo;
+    this.haCambiadoTem=true;
+  }
+
+  EliminarFase(index){
     console.log(this.dato)
     console.log(index)
     this.dato.maquinas.splice(index,1);

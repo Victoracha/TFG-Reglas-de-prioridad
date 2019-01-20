@@ -2,7 +2,7 @@
     display: flex;
   }
   #miTablaPersonalizada th{
-    width: 400px;
+    width: 200px;
     overflow: auto;
     border: 0px solid;
     background: white;

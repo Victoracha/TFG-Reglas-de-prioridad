@@ -15,6 +15,15 @@
     text-transform: uppercase;
     
 }
+.btn3 {
+    height: 50px;
+    width: 170px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    
+}
 .btnMicro {
     height: 27px;
     width: 12px;
@@ -26,9 +35,26 @@
     
 }
 #miTablaPersonalizada th{
-    width: 20px;
+    width: 300px;
     overflow: auto;
     border: 0px solid;
     background: white;
     color: black;
   }
+  #miTablaPersonalizada2 th{
+    width: 400px;
+    overflow: auto;
+    border: 0px solid white;
+    border-bottom: 1px solid white;
+    background: white;
+    color: black;
+    
+  }
+  .texto {
+    position: relative;
+    top: 90%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
