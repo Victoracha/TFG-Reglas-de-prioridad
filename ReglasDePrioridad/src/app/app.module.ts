@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxLoadingModule , ngxLoadingAnimationTypes } from 'ngx-loading';
 
 import { AppComponent } from './app.component';
 /*import { MenuLateral3Component } from './menu-lateral3/menu-lateral3.component';
@@ -32,6 +33,12 @@ import { HistorialBaseDatosComponent } from './historial-base-datos/historial-ba
     
   ],
   imports: [
+    NgxLoadingModule.forRoot({animationType: ngxLoadingAnimationTypes.wanderingCubes,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+      backdropBorderRadius: '4px',
+      primaryColour: '#ffffff', 
+      secondaryColour: '#ffffff', 
+      tertiaryColour: '#ffffff'}),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule

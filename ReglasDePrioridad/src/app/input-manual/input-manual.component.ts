@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {InputDatos} from '../input';
-
+import { NgxLoadingModule , ngxLoadingAnimationTypes } from 'ngx-loading';
 import { APIService } from '../api.service';
 import { PiezaComponent } from '../pieza/pieza.component';
 import { DataSource } from '@amcharts/amcharts4/core';
@@ -11,7 +11,12 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './input-manual.component.html',
   styleUrls: ['./input-manual.component.css']
 })
-export class InputManualComponent implements OnInit {
+export class InputManualComponent implements OnInit, NgxLoadingModule {
+  
+
+
+
+
 
   datosInput: Array<InputDatos> = [];
   dato= new InputDatos();
@@ -26,8 +31,9 @@ export class InputManualComponent implements OnInit {
   private haCambiadoTem=false;
   private getEjecucion=true;
   private idEjecucionAtras=0;
-  
+  public loading=false;
   private controlEjecucion=false;
+  private errorPost=false;
   datoCargaIds=[];
    idEje: number=2;
   constructor(private apiService: APIService, private route: ActivatedRoute) { }
@@ -36,7 +42,7 @@ export class InputManualComponent implements OnInit {
     this.idEjecucionAtras = +this.route.snapshot.paramMap.get('id');
     if(this.idEjecucionAtras > 0)
       this.inicializaDatos(this.idEjecucionAtras);
-    
+      
       
   }
   inicializaDatos(idEje){
@@ -48,6 +54,7 @@ export class InputManualComponent implements OnInit {
           this.datosInput[elemento['nPiezaEje']-1].maquinas.push(elemento['maquinaNecesaria']);
           this.datosInput[elemento['nPiezaEje']-1].tiempos.push(elemento['tiempoRequerido']);
           this.datosInput[elemento['nPiezaEje']-1].index.push(elemento['index']);
+          this.controlEjecucion=true;
         }else{
           this.datoCargaIds.push(elemento['nPiezaEje']);
           console.log(this.datoCargaIds);
@@ -191,16 +198,27 @@ export class InputManualComponent implements OnInit {
   }
   
   createEjecucion(){
-    
-    var id=this.apiService.postDatosEjecucion(this.datosInput).subscribe((Response) => {console.log(Response);this.idEje=+Response['id'];
+    this.errorPost=false;
+    this.loading=true;
+    var consigueLlamada=false;
+    var id=this.apiService.postDatosEjecucion(this.datosInput).subscribe((Response) => {consigueLlamada=true;console.log(Response);this.idEje=+Response['id'];
       console.log(Response['id']);
       var tipo=typeof Response['id'];
       if(tipo == "number"){
         this.verEjecucion=true;
+        this.loading=false;
       }
-      console.log(this.idEje);
-    })
       
+      console.log(this.idEje);
+    },
+    (error) => {
+      this.loading=false;
+      this.errorPost=true;
+    }
+    )
+    
+      
+    //this.loading=false;
     /*this.idEje=+id;
     var tipo=typeof id;
     if(tipo == "number"){

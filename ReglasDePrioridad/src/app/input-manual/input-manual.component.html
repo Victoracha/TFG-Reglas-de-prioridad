@@ -1,7 +1,8 @@
-<div class="col-lg-3"  >
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="col-lg-2"  >
   </div>
-  <div class="col-lg-9"  >
-      <input id="is3dCheckBox" type="checkbox" checked="checked" />
+  <div class="col-lg-10"  >
+      <!--<input id="is3dCheckBox" type="checkbox" checked="checked" />-->
      <div *ngIf="estado">
         
         
@@ -36,7 +37,7 @@
                               <!--div *ngIf="valores"> Valor: &nbsp; {{pie.valor}} </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <div *ngIf="tiempoEsperado"> Tiempo Esperado: &nbsp;{{pie.tiempoEsperado}} </div>-->
                            <th><button type="button" class="btn2 btn-sm btn-dark  sharp btn-block " (click)="envia(pie)" >Añade fase</button></th>
-                           <th><button type="button" class="btn2 btn-sm btn-dark  sharp btn-block " (click)="eliminaOT(pie.id)" >Elimina OT</button></th>
+                           <th><button type="button" class="btn2 btn-sm btn-dark  sharp btn-block " (click)="eliminaOT(pie.id) " >Elimina OT</button></th>
                             <th></th>
                             <th></th>
                           </tr>
@@ -49,12 +50,25 @@
                </button>
       <br><br><br><br><br><br>
       <div *ngIf="controlEjecucion">      
-        <h1>
+        <!--<h1>
            Ejecutar
-        </h1>
-        <button type="button" class="btn2 btn-sm btn-dark  sharp btn-block"(click)="createEjecucion()" >
-        Create Contact
-        </button>
+        </h1>-->
+        <div  *ngIf="!verEjecucion">
+            <div  *ngIf="loading">
+              <div class="loader"></div>
+            </div>
+            <button type="button" class="btn2 btn-sm btn-dark  sharp btn-block"(click)="createEjecucion()" >
+                Ejecutar
+            </button>
+            
+            <div  *ngIf="errorPost">
+              <br>
+
+              <h5>Fallo en envío de información, por favor revise los datos y vuelva a intentar.</h5>
+              </div>
+
+          
+        </div>
         <div  *ngIf="verEjecucion">
          <button type="button" class="btn2 btn-sm btn-dark  sharp btn-block" routerLink="/tabla-resultados/{{idEje}}">Ver ejecución</button><br/>
       
@@ -84,14 +98,14 @@
                            </tr>
                          </thead>
                          <tbody>          
-                              <tr *ngFor="let pie of datosInput">
+                 
                                     
                                    
                                  <th><input #valor type="number" min=0 value="{{dato.valor}}"></th>    
                                   <th><button type="button" class="btn2 btn-sm btn-dark sharp btn-block " (click)="guardarValor(valor.value)"  >Actualizar</button></th>
                                   <th></th>
                                   <th></th>
-                                </tr>
+                               
                            
                          </tbody>
                        </table>
@@ -106,7 +120,7 @@
                 <thead>
                   <tr id="miTablaPersonalizada2">
                     
-                    <th scope="col"><h4>Tiempo Esperado</h4></th>
+                    <th scope="col"><h4>Fecha de Entrega</h4></th>
                     
                     <th scope="col"><h4></h4></th>
                     <th scope="col"></th>    
@@ -116,14 +130,14 @@
                   </tr>
                 </thead>
                 <tbody>          
-                     <tr *ngFor="let pie of datosInput">
+                   
                            
                           
                         <th><input #tiempoes type="number" min=0 value="{{dato.tiempoEsperado}}"></th>    
                         
                          <th><button type="button" class="btn2 btn-sm btn-dark sharp btn-block " (click)="guardarTiempoEsperado(tiempoes.value)"  >Actualizar</button></th>
                          <th></th>
-                       </tr>
+                      
                   
                 </tbody>
               </table>
@@ -146,15 +160,13 @@
                        
                      </tr>
                    </thead>
-                   <tbody>          
-                        <tr *ngFor="let pie of datosInput">
-                              
+                   <tbody>                
                              
                            <th> <input #Maquina type="number"></th>    
                            
                             <th> <input #Tiempo type="number">  </th>
                             <th><button type="button" class=" btn2 btn-sm btn-dark  sharp btn-block " (click)="CrearFase(Maquina.value, Tiempo.value)"  >Crear</button><br/></th>
-                          </tr>
+                     
                      
                    </tbody>
                  </table>
@@ -176,16 +188,19 @@
       <!--<div class="col-lg-1"  >
       </div>-->
       <div *ngIf="!estado">
-         <div class="col-lg-3"  >
+         <div class="col-lg-2"  >
          </div>
-          <div class="col-lg-2"  >
+          <div class="col-lg-3"  >
             
-            <div *ngFor="let pie of dato.maquinas">
-                 
+              <div *ngFor="let pie of dato.maquinas ; index as i">
+              <div class="margen">
+                  O.F {{i+1}} 
+                  &nbsp;&nbsp; &nbsp;&nbsp; 
                   C.T <input #Maquina type="number" min=0 value="{{pie}}" (change)="actualizaMaquina(Maquina.value)">
                   <br/>
                   <br/>
                   <br/>
+                </div>
             </div>
             <button type="button" class="btn2 btn-sm btn-dark sharp btn-block " (click)="guardar(dato.id)"  >Volver</button><br/>
 
