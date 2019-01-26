@@ -1,7 +1,7 @@
-<div class="col-lg-3"  >
+<div class="col-lg-2"  >
     
   </div>
-  <div class="col-lg-8 "  >
+  <div class="col-lg-9 "  >
       
       <h1>Ejecuciones Registradas</h1>
         <br>
@@ -13,15 +13,19 @@
                   <tr id="miTablaPersonalizada">
                     
                     <th scope="col"><h4>Número de ejecución</h4></th>
-                    
+                    <th scope="col"><h4>Número O.Ts</h4></th>     
+                    <th scope="col"><h4>Número C.Ts</h4></th> 
                     <th scope="col"><h4>Fecha de ejecución</h4></th>
-                    <th scope="col"></th>     
+                      
+                    <th scope="col"></th>   
                   </tr>
                 </thead>
                 <tbody>          
                       <tr *ngFor="let pie of ejecucion">
                           
                               <td><h4>{{pie.id}}</h4></td>
+                              <td><h4>{{pie.nPiezas}}</h4></td>
+                              <td><h4>{{pie.nMaquinas}}</h4></td>
                               <td><h4>{{pie.fecha | date:"short"}}</h4></td>
                         
                         <div *ngIf="esEjecucion">

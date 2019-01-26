@@ -21,9 +21,9 @@ class Pieza:
         self._tiempoOperacionalTotalRestante = self._tiempoOperacionalTotal
 
         for fase in self._fases:
-            self._tiempoOperacionalTotalRestante-=fase.get_tiempoRequerido()
-            fase.set_tiempoOperacionalRestante(self._tiempoOperacionalTotalRestante)
 
+            fase.set_tiempoOperacionalRestante(self._tiempoOperacionalTotalRestante)
+            self._tiempoOperacionalTotalRestante -= fase.get_tiempoRequerido()
     def getNpieza(self):
         return self._nPieza
 

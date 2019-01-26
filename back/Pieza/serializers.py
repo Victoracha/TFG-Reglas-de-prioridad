@@ -11,7 +11,7 @@ from Pieza.models import DatosInput
 class EjecucionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ejecucion
-        fields = ('id','fecha')
+        fields = ('id','fecha','nPiezas','nMaquinas')
 
 class PiezaSerializer(serializers.ModelSerializer):
     class Meta:

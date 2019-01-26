@@ -11,6 +11,8 @@ STYLE_CHOICES = sorted((item, item) for item in get_all_styles())"""
 
 class Ejecucion(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
+    nPiezas= models.IntegerField()
+    nMaquinas= models.IntegerField()
     def create(self, validated_data):
 
         return Ejecucion.objects.create(**validated_data)
