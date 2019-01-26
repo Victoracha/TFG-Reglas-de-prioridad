@@ -4,25 +4,27 @@ from algoritmos.Executor import  Executor
 from Pieza.models import Ejecucion, PiezaEje, ResultadoGeneral, PiezaResultado, Fase
 from django.utils import timezone
 class Control():
-    def __init__(self, piezas_maquina, piezas_tiempo, n_maquinas=3, algoritmo="spt", data=0):
+    def __init__(self, piezas_maquina, piezas_tiempo, n_maquinas=3, algoritmo="spt",valor=[] , tiempoEsperado=[] ,data=0):
         self._piezas = []
         #Pieza()
         self._n_maquinas=n_maquinas
         self._maquinas = []
-
+        self._tiempoEsperados=tiempoEsperado
+        self._valores = valor
         self._tiempoMax = 0
         self._tiempoMin = 999999
         self._tiempoMedio = 0
         self._SA = 0
         self._SR = 0
-        self._NA = 0
-        self._NR = 0
-
+        self._nRetrasos=0
+        self._nAdelantos=0
+        self._NA= 0
+        self._NR= 0
         self._data=data
         for i in range (self._n_maquinas):
             self._maquinas.append(Maquina(i+1, len(piezas_maquina), algoritmo))
         for i in range(len(piezas_maquina)):
-            self._piezas.append(Pieza(piezas_maquina[i], piezas_tiempo[i], i+1))
+            self._piezas.append(Pieza(piezas_maquina[i], piezas_tiempo[i], i+1, self._valores[i], self._tiempoEsperados[i]))
         self._nPiezas=len(self._piezas)
 
     def algoritmo (self, algoritmo="spt", algoritmoAux="fifo"):
@@ -36,14 +38,26 @@ class Control():
                     self._tiempoMax = piezaEvaTiempo.getTiempoTotal()
                 if piezaEvaTiempo.getTiempoTotal() < self._tiempoMax:
                     self._tiempoMin = piezaEvaTiempo.getTiempoTotal()
+
+
+                if piezaEvaTiempo.getTiempoTotal() <  piezaEvaTiempo.getTiempoEsperado():
+                    self._NA += 1
+                    self._nAdelantos += 1
+                    piezaEvaTiempo.setAdelanto( piezaEvaTiempo.getTiempoEsperado() - piezaEvaTiempo.getTiempoTotal())
+                    self._SA+= piezaEvaTiempo.getTiempoEsperado() - piezaEvaTiempo.getTiempoTotal()
+
+
+                elif piezaEvaTiempo.getTiempoTotal() > piezaEvaTiempo.getTiempoEsperado():
+                    self._NR += 1
+                    self._nRetrasos += 1
+                    piezaEvaTiempo.setRetroceso(piezaEvaTiempo.getTiempoTotal()- piezaEvaTiempo.getTiempoEsperado())
+                    self._SR+=piezaEvaTiempo.getTiempoTotal()- piezaEvaTiempo.getTiempoEsperado()
                 self._tiempoMedio += piezaEvaTiempo.getTiempoTotal()
+            if self._nAdelantos >0:
+                self._SA /=self._nAdelantos
+            if self._nRetrasos > 0:
+                self._SR /=self._nRetrasos
             self._tiempoMedio /= len(self._piezas)
-
-
-            """for da in self._data.values():
-                d=0
-            for num in da:
-                d=0"""
 
             id=self.guardaPiezas()
 
