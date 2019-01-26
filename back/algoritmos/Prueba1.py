@@ -8,4 +8,3 @@ control.algoritmo()
 a=2
 
 piezas_maquina=[[],[],[], [],[]]
-piezas_tiempo=[[],[],[], [],[]]

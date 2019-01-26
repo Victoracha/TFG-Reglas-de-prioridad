@@ -33,6 +33,18 @@ def ejecucion_list(request):
 
         piezas_maquina = [[2, 3, 1], [2, 1, 2, 3], [3, 1, 2], [2, 3, 1, 2], [3, 2]]
         piezas_tiempo = [[1, 2, 1], [0.5, 2, 0.5, 2.5], [1.5, 2.5, 1], [1, 2.5, 3, 1], [0.5, 2]]
+
+        nMaquinas=3
+        """PRUEBAS"""
+        #1
+        piezas_maquina =[[2,3,4,1,2], [2,1,3,2,4],[3,4,2,1,2,1],[1,3,4,1]]
+        nMaquinas=4
+        piezas_tiempo =[[0.5,1,3,1.5,1], [2,0.5,1,2.5,1],[1,2,1.5,1,0.5,0.5],[2.5,1,3,0.5]]
+
+        #2
+        piezas_maquina = [[2,1 ,2 ], [1,2 ,1 ,2], [2,3 ,1], [2, 1, 2,1], [1,3,2]]
+        nMaquinas = 3
+        piezas_tiempo = [[0.5,1.5 ,1 ], [0.5, 1,0.5 ,1], [1,0.5 ,1.5], [1.5, 2, 1,0.5], [1, 1,0.5]]
         tiempo=[]
         maquina=[]
         for pieza in data:
@@ -49,33 +61,37 @@ def ejecucion_list(request):
         print(maquina)
         print("tiempo")
         print(tiempo)
-        control = Control(maquina, tiempo)
+        #control = Control(maquina, tiempo)
 
-
-        #control = Control(piezas_maquina, piezas_tiempo)
-
-        ejecucion=control.algoritmo()
-        id=ejecucion.id
-        for pieza in data:
-            for i in range(len(pieza['maquinas'])):
-                datosInput= DatosInput(ejecucion=ejecucion, nPiezaEje=pieza['id'],nFase=i, tiempoRequerido=pieza['tiempos'][i],maquinaNecesaria=pieza['maquinas'][i], valor= pieza['valor'],
-                                       tiempoEs=pieza['tiempoEsperado'] , index=pieza['index'][i])
-                datosInput.save()
+        valores = [4, 3, 2, 5, 6]
+        control = Control(piezas_maquina, piezas_tiempo, nMaquinas, "mayorvalor", valores)
+        if len(tiempo) >0 and len( maquina)>0:
+            ejecucion=control.algoritmo()
+            id=ejecucion.id
+            for pieza in data:
+                for i in range(len(pieza['maquinas'])):
+                    datosInput= DatosInput(ejecucion=ejecucion, nPiezaEje=pieza['id'],nFase=i, tiempoRequerido=pieza['tiempos'][i],maquinaNecesaria=pieza['maquinas'][i], valor= pieza['valor'],
+                                           tiempoEs=pieza['tiempoEsperado'] , index=pieza['index'][i])
+                    datosInput.save()
+        else:
+            id=-2
         print(datosInput)
 
         print(id)
         resul = {"id": id}
+        resul2 = {"id": id,"aa":'we' ,"d": 'das',"w": 'das'}
         serializer = EjecucionSerializer(data=resul)
 
         print(type(id))
-        if type(id)=='int':
+        if type(id) == 'int':
             return JsonResponse(resul, status=201)
-        if serializer.is_valid():
-            #serializer.save()
+        """if serializer.is_valid():
+            # serializer.save()
             return JsonResponse(resul, status=201)
-        if type(id)=='int':
+        if type(id) == 'int':
+            return JsonResponse(resul, status=201)"""
+        if(i>-1):
             return JsonResponse(resul, status=201)
-
         return JsonResponse(serializer.errors, status=400)
 
 @csrf_exempt
