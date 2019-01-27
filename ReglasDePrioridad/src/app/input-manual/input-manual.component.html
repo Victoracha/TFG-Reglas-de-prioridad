@@ -20,11 +20,11 @@
                    
                    <thead>
                      <tr id="miTablaPersonalizada">
-                       
+                      <th scope="col"><h4>N PIEZA</h4></th> 
                        <th scope="col"><h4>O.T.</h4></th>
                        
                        <th scope="col"><h4></h4></th>
-                       <th scope="col"></th>    
+                          
                        <th scope="col"></th> 
                        <th scope="col"></th> 
                        <th scope="col"></th> 
@@ -32,8 +32,8 @@
                      </tr>
                    </thead>
                    <tbody>          
-                        <tr *ngFor="let pie of datosInput">
-                              
+                        <tr *ngFor="let pie of datosInput; let numero of nPiezas">
+                          <th><h5>{{nPiezas[pie.id-1]}}</h5></th>
                            <th><h5>O.T &nbsp; {{pie.id}}</h5></th>
                               <!--div *ngIf="valores"> Valor: &nbsp; {{pie.valor}} </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <div *ngIf="tiempoEsperado"> Tiempo Esperado: &nbsp;{{pie.tiempoEsperado}} </div>-->
@@ -59,8 +59,63 @@
             <div  *ngIf="loading">
               <div class="loader"></div>
             </div>
+        
+                       <div class="table-responsive-xl"> 
+                       <table class="table">
+                           
+                           <thead>
+                             <tr id="miTablaPersonalizada2">
+                               
+                               <th scope="col"><h4>ALGORITMOS</h4></th>
+                               
+                               <th scope="col"><h4></h4></th>
+                               <th scope="col"></th> 
+                               <th scope="col"></th>      
+                               <th scope="col"></th>  
+                               
+                             </tr>
+                           </thead>
+                           <tbody>                
+                             <tr>        
+                              <th><input type="checkbox" (click)="spt()"> SPT</th>
+                              <th><input type="checkbox" (click)="lpt()"> LPT</th>
+                              <th><input type="checkbox" (click)="fifo()"> FIFO</th>
+                              <th><input type="checkbox" (click)="aleatorio()"> Aleatorio</th>
+                            </tr>
+                            <tr>
 
-            <input type="checkbox" (click)="spt()"> SPT<br>
+                              <th><input type="checkbox" (click)="edd()"> EDD</th>
+                              <th><input type="checkbox" (click)="wWinq()"> WINQ</th>
+                              <th><input type="checkbox" (click)="mayorValor()"> Mayor Valor</th>
+                              <th><input type="checkbox" (click)="mayorTiempo()">Mayor Tiempo</th>
+                            </tr>
+                           </tbody>
+                         </table>
+                       </div>
+
+                       <div class="table-responsive-xl"> 
+                        <table class="table">
+                            
+                            <thead>
+                              <tr id="miTablaPersonalizada2">
+                                
+                                <th scope="col"><h4></h4></th>
+                                
+                                <th scope="col"><h4></h4></th>
+                                <th scope="col"></th> 
+                                <th scope="col"></th>      
+                                 
+                                
+                              </tr>
+                            </thead>
+                            <tbody>                
+                                      
+                             
+                             
+                              
+                            </tbody>
+                          </table>
+                        </div>
 
             <button type="button" class="btn2 btn-sm btn-dark  sharp btn-block"(click)="createEjecucion()" >
                 Ejecutar

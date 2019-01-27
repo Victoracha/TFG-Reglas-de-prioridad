@@ -36,7 +36,15 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
   private errorPost=false;
 
   private isSpt=false;
-
+  private isLpt=false;
+  private isFifo=false;
+  private isAlea=false;
+  private isMaValor=false;
+  private isEdd=false;
+  private isWinq=false;
+  private isTiempoRes=false;
+  private algoritmos=[];
+  private nPiezas=[];
   datoCargaIds=[];
    idEje: number=2;
   constructor(private apiService: APIService, private route: ActivatedRoute) { }
@@ -108,12 +116,15 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
       //this.datosInput[0]=dato
       this.datosInput.push(dato);
     }
-    
+      this.nPiezas.push(dato.id);
+      console.log(this.nPiezas)
   }
 
   eliminaOT(index){
-    
+    console.log(index)
+    this.nPiezas.splice(index-1,1);
     this.datosInput.splice(index.id-1,1);
+    console.log(this.nPiezas)
     let i=1;
     for(let dato of this.datosInput){
       dato.id=i;
@@ -200,23 +211,99 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
     console.log(this.dato);
   }
   spt(){
-    if (!this.isSpt)
+    if (!this.isSpt){
       this.isSpt=true;
-    else
-      this.isSpt=false;
+      this.algoritmos.push("spt");
+      console.log(this.algoritmos);
+    }else{
+       this.isSpt=false;
+       this.algoritmos.splice(this.algoritmos.indexOf("spt"),1);
+       console.log(this.algoritmos);
+    }
     console.log(this.isSpt)
   }
+
+  lpt(){
+    if (!this.isLpt){
+      this.isLpt=true;
+      this.algoritmos.push("llp");
+      console.log(this.algoritmos);
+    }else{
+       this.isLpt=false;
+       this.algoritmos.splice(this.algoritmos.indexOf("llp"),1);
+       console.log(this.algoritmos);
+    }
+    console.log(this.isLpt)
+  }
+
+  fifo(){
+    if (!this.isFifo){
+      this.isFifo=true;
+      this.algoritmos.push("fifo");
+      console.log(this.algoritmos);
+    }else{
+       this.isFifo=false;
+       this.algoritmos.splice(this.algoritmos.indexOf("fifo"),1);
+       console.log(this.algoritmos);
+    }
+    console.log(this.isFifo)
+  }
+  aleatorio(){
+    if (!this.isAlea){
+      this.isAlea=true;
+      this.algoritmos.push("aleatorio");
+      console.log(this.algoritmos);
+    }else{
+       this.isAlea=false;
+       console.log(this.algoritmos.indexOf("aleatorio"))
+       this.algoritmos.splice(this.algoritmos.indexOf("aleatorio"),1);
+       
+       console.log(this.algoritmos);
+    }
+    console.log(this.isAlea)
+  }
+
+  mayorValor(){
+    if (!this.isMaValor){
+      this.isMaValor=true;
+      this.algoritmos.push("mayorvalor");
+      console.log(this.algoritmos);
+    }else{
+       this.isMaValor=false;
+       this.algoritmos.splice(this.algoritmos.indexOf("mayorvalor"),1);
+       console.log(this.algoritmos);
+    }
+    console.log(this.isMaValor)
+  }
+
+  edd(){
+    if (!this.isEdd){
+      this.isEdd=true;
+      this.algoritmos.push("edd");
+      console.log(this.algoritmos);
+    }else{
+       this.isEdd=false;
+       this.algoritmos.splice(this.algoritmos.indexOf("edd"),1);
+       console.log(this.algoritmos);
+    }
+    console.log(this.isEdd)
+  }
+
+  
+
   createEjecucion(){
     this.errorPost=false;
     this.loading=true;
     var consigueLlamada=false;
-    var id=this.apiService.postDatosEjecucion(this.datosInput).subscribe((Response) => {consigueLlamada=true;console.log(Response);this.idEje=+Response['id'];
+    var id=this.apiService.postDatosEjecucion([this.datosInput, this.algoritmos]).subscribe((Response) => {consigueLlamada=true;console.log(Response);this.idEje=+Response['id'];
       console.log(Response['id']);
       var tipo=typeof Response['id'];
       if(tipo == "number"){
         this.verEjecucion=true;
         this.loading=false;
       }
+
+  
       
       console.log(this.idEje);
     },
@@ -235,4 +322,31 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
     }*/
     //this.apiService.enviaEjecucion( id );
   };
+
+  wWinq(){
+    if (!this.isWinq){
+      this.isWinq=true;
+      this.algoritmos.push("winq");
+      console.log(this.algoritmos);
+    }else{
+       this.isWinq=false;
+       this.algoritmos.splice(this.algoritmos.indexOf("winq"),1);
+       console.log(this.algoritmos);
+    }
+    console.log(this.isWinq)
+  }
+
+  mayorTiempo(){
+    if (!this.isTiempoRes){
+      this.isTiempoRes=true;
+      this.algoritmos.push("mayortiempo");
+      console.log(this.algoritmos);
+    }else{
+       this.isTiempoRes=false;
+       this.algoritmos.splice(this.algoritmos.indexOf("mayortiempo"),1);
+       console.log(this.algoritmos);
+    }
+    console.log(this.isTiempoRes)
+  }
+
 }

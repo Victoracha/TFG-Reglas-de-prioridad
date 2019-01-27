@@ -28,6 +28,7 @@ def ejecucion_list(request):
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
+        print(data)
         piezas_maquina = [[2, 3, 1], [2, 1, 2, 3], [3, 1, 2], [2, 3, 1, 2], [3, 2]]
         piezas_tiempo = [[2, 2, 1], [0.5, 2, 0.5, 2.5], [1.5, 2.5, 1], [1, 2.5, 3, 1], [0.5, 2]]
 
@@ -51,7 +52,7 @@ def ejecucion_list(request):
         piezas_tiempo = [[1, 2, 1], [0.5, 2, 0.5, 2.5], [1.5, 2.5, 1], [1, 2.5, 3, 1], [0.5, 2]]
         tiempo=[]
         maquina=[]
-        for pieza in data:
+        for pieza in data[0]:
             print("id")
             print(pieza['id'])
             print("maquinas")
@@ -66,21 +67,23 @@ def ejecucion_list(request):
         print("tiempo")
         print(tiempo)
         #control = Control(maquina, tiempo)
-
+        print(data[1])
         valores = [4, 3, 2, 5, 6]
         tiempoEsperado = [6, 9, 6, 12, 5]
         control = Control(piezas_maquina, piezas_tiempo, 3, "winq", valores, tiempoEsperado)
         if len(tiempo) >0 and len( maquina)>0:
             ejecucion=control.algoritmo()
             id=ejecucion.id
-            for pieza in data:
+            for pieza in data[0]:
                 for i in range(len(pieza['maquinas'])):
                     datosInput= DatosInput(ejecucion=ejecucion, nPiezaEje=pieza['id'],nFase=i, tiempoRequerido=pieza['tiempos'][i],maquinaNecesaria=pieza['maquinas'][i], valor= pieza['valor'],
                                            tiempoEs=pieza['tiempoEsperado'] , index=pieza['index'][i])
                     datosInput.save()
+            print("AAAAAAAAAAAAAAAAAAA")
+            print(datosInput)
         else:
             id=-2
-        print(datosInput)
+
 
         print(id)
         resul = {"id": id}
