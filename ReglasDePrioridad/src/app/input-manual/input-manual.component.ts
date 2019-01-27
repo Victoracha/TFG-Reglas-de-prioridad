@@ -154,13 +154,13 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
   }
   guardarValor(valor){
     if (this.valores){
-      this.dato.valor=valor;
+      this.dato.valor=+valor;
     }
   
   }
   guardarTiempoEsperado(tiempo){
     if (this.tiempoEsperado){
-      this.dato.tiempoEsperado=tiempo;
+      this.dato.tiempoEsperado=+tiempo;
     }
     
   }

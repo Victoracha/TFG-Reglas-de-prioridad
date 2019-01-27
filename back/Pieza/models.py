@@ -37,7 +37,8 @@ class PiezaResultado(models.Model):
     tiempoTotal = models.FloatField()
     diferenciaAde = models.FloatField()
     diferenciaRetra = models.FloatField()
-
+    indiceResultado = models.IntegerField()
+    algoritmo = models.CharField(max_length=50)
     """class Meta:
         ordering = ('created',)"""
     def create(self, validated_data):
@@ -47,7 +48,7 @@ class PiezaResultado(models.Model):
         return PiezaResultado.objects.create(**validated_data)
 
 class ResultadoGeneral(models.Model):
-    id=models.ForeignKey(Ejecucion, primary_key=True, on_delete=models.CASCADE)
+    id=models.AutoField(primary_key=True)
     tiempoMax=models.FloatField()
     tiempoMin = models.FloatField()
     tiempoMedio = models.FloatField()
@@ -55,9 +56,24 @@ class ResultadoGeneral(models.Model):
     SR = models.FloatField()
     NA = models.FloatField()
     NR = models.FloatField()
+    ejecucion = models.ForeignKey(Ejecucion, on_delete=models.CASCADE)
     def create(self, validated_data):
 
         return ResultadoGeneral.objects.create(**validated_data)
+
+class ResultadoFinal(models.Model):
+    id = models.AutoField(primary_key=True)
+    tiempoMax=models.FloatField()
+    tiempoMin = models.FloatField()
+    tiempoMedio = models.FloatField()
+    SA = models.FloatField()
+    SR = models.FloatField()
+    NA = models.FloatField()
+    NR = models.FloatField()
+    ejecucion = models.ForeignKey(Ejecucion, on_delete=models.CASCADE)
+    def create(self, validated_data):
+
+        return ResultadoFinal.objects.create(**validated_data)
 
 class Fase(models.Model):
     id=models.AutoField(primary_key=True )
@@ -71,7 +87,7 @@ class Fase(models.Model):
     tiempoFaseSalida = models.FloatField()
     color = models.IntegerField()
     brightness= models.FloatField()
-
+    indiceResultado = models.IntegerField()
     def create(self, validated_data):
 
         return ResultadoGeneral.objects.create(**validated_data)
