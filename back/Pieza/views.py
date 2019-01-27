@@ -69,7 +69,7 @@ def ejecucion_list(request):
 
         valores = [4, 3, 2, 5, 6]
         tiempoEsperado = [6, 9, 6, 12, 5]
-        control = Control(piezas_maquina, piezas_tiempo, 3, "edd", valores, tiempoEsperado)
+        control = Control(piezas_maquina, piezas_tiempo, 3, "winq", valores, tiempoEsperado)
         if len(tiempo) >0 and len( maquina)>0:
             ejecucion=control.algoritmo()
             id=ejecucion.id

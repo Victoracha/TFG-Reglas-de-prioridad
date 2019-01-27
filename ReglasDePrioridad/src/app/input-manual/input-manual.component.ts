@@ -34,6 +34,9 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
   public loading=false;
   private controlEjecucion=false;
   private errorPost=false;
+
+  private isSpt=false;
+
   datoCargaIds=[];
    idEje: number=2;
   constructor(private apiService: APIService, private route: ActivatedRoute) { }
@@ -196,7 +199,13 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
     this.dato.index.splice(-1,1);
     console.log(this.dato);
   }
-  
+  spt(){
+    if (!this.isSpt)
+      this.isSpt=true;
+    else
+      this.isSpt=false;
+    console.log(this.isSpt)
+  }
   createEjecucion(){
     this.errorPost=false;
     this.loading=true;

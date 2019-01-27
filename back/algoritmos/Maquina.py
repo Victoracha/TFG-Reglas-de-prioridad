@@ -79,6 +79,8 @@ class Maquina:
                 self.mayorValor()
             elif self._algoritmo=="edd":
                 self.edd()
+            elif self._algoritmo == "winq":
+                self.winq()
             self._libre =False
             if len(self._faseActualMaquina) > 0:
                 self._FasesEjecutadasLista.append(self._faseActualMaquina[0])
@@ -145,13 +147,26 @@ class Maquina:
                 self._tiempoEjecucionFase = self._tiempoActual
                 candidato.set_TiempoEntrada(self._tiempoActual)
 
+
+    def winq(self):
+        for candidato in self._candidatos:
+
+            if len(self._faseActualMaquina) == 0:
+                self._faseActualMaquina = [candidato]
+                self._tiempoEjecucionFase = self._tiempoActual
+                candidato.set_TiempoEntrada(self._tiempoActual)
+            elif self._faseActualMaquina[0].getTiempoSig() > candidato.getTiempoSig():
+                self._faseActualMaquina = [candidato]
+                self._tiempoEjecucionFase = self._tiempoActual
+                candidato.set_TiempoEntrada(self._tiempoActual)
+
     def fifo(self):
         self._faseActualMaquina = [self._candidatos[0]]
         self._tiempoEjecucionFase = self._tiempoActual
         self._candidatos[0].set_TiempoEntrada(self._tiempoActual)
 
     def aleatorio(self):
-        self._faseActualMaquina = [random.choice(self._candidatos[0])]
+        self._faseActualMaquina = [random.choice(self._candidatos)]
         self._tiempoEjecucionFase = self._tiempoActual
-        self._faseActualMaquina.set_TiempoEntrada(self._tiempoActual)
+        self._faseActualMaquina[0].set_TiempoEntrada(self._tiempoActual)
 

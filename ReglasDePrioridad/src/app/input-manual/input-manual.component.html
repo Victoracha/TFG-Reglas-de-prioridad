@@ -3,6 +3,7 @@
   </div>
   <div class="col-lg-10"  >
       <!--<input id="is3dCheckBox" type="checkbox" checked="checked" />-->
+      
      <div *ngIf="estado">
         
         
@@ -36,6 +37,7 @@
                            <th><h5>O.T &nbsp; {{pie.id}}</h5></th>
                               <!--div *ngIf="valores"> Valor: &nbsp; {{pie.valor}} </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <div *ngIf="tiempoEsperado"> Tiempo Esperado: &nbsp;{{pie.tiempoEsperado}} </div>-->
+                              
                            <th><button type="button" class="btn2 btn-sm btn-dark  sharp btn-block " (click)="envia(pie)" >Añade fase</button></th>
                            <th><button type="button" class="btn2 btn-sm btn-dark  sharp btn-block " (click)="eliminaOT(pie.id) " >Elimina OT</button></th>
                             <th></th>
@@ -57,6 +59,9 @@
             <div  *ngIf="loading">
               <div class="loader"></div>
             </div>
+
+            <input type="checkbox" (click)="spt()"> SPT<br>
+
             <button type="button" class="btn2 btn-sm btn-dark  sharp btn-block"(click)="createEjecucion()" >
                 Ejecutar
             </button>
