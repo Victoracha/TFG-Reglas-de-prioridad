@@ -71,6 +71,23 @@ class Control():
         print("llega")
 
         print(e)
+        if self._algoritmo == "spt":
+            self._algoritmo="SPT"
+        elif self._algoritmo == "llp":
+            self._algoritmo = "LPT"
+        elif self._algoritmo == "fifo":
+            self._algoritmo = "FIFO"
+        elif self._algoritmo == "mayortiempo":
+            self._algoritmo = "Mayor Tiempo Restante"
+        elif self._algoritmo == "aleatorio":
+            self._algoritmo = "Aleatorio"
+        elif self._algoritmo == "mayorvalor":
+            self._algoritmo = "Mayor Valor de O.F"
+        elif self._algoritmo == "edd":
+            self._algoritmo = "EDD"
+        elif self._algoritmo == "winq":
+            self._algoritmo = "WINQ"
+
         for pieza in self._piezas:
             p = PiezaResultado(nPieza=pieza.getNpieza(), ejecucion=e, tiempoEsperado=pieza.getTiempoEsperado(),
                                tiempoTotal=pieza.getTiempoTotal(),
@@ -79,7 +96,7 @@ class Control():
             p.save()
         resultado = ResultadoFinal( tiempoMax=self._tiempoMax, tiempoMin=self._tiempoMin,
                                      tiempoMedio=self._tiempoMedio
-                                     , SA=self._SA, SR=self._SR, NA=self._NA, NR=self._NR, ejecucion=e )
+                                     , SA=self._SA, SR=self._SR, NA=self._NA, NR=self._NR, ejecucion=e, algoritmo=self._algoritmo )
         resultado.save()
 
         for maquina in self._maquinas:

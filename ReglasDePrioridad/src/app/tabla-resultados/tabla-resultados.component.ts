@@ -174,6 +174,7 @@ getEjeFase(){
   let series1 = chart.series.push(new am4charts.ColumnSeries());
   series1.columns.template.width = am4core.percent(80);
   series1.columns.template.tooltipText = "Número de Pieza {nPiezaEje} - Número de Fase {nFase} - C.T {maquinaNecesaria} - Tiempor Requerido {tiempoRequerido}";
+  
   //series1.columns.template.textDecoration="Número de Pieza {nPiezaEje} - Número de Fase {nFase} - C.T {maquinaNecesaria} - Tiempor Requerido {tiempoRequerido}";
   //series1.itemReaderText="Número de Pieza {nPiezaEje} - Número de Fase {nFase} - C.T {maquinaNecesaria} - Tiempor Requerido {tiempoRequerido}";
   
@@ -184,8 +185,14 @@ getEjeFase(){
   series1.dataFields.categoryY = "maquinaText";
   series1.columns.template.propertyFields.fill = "color"; // get color from data
   series1.columns.template.propertyFields.stroke = "color";
-  
-  
+  let bullet1 = series1.bullets.push(new am4charts.LabelBullet());
+  //bullet1.label.text="{nPiezaEje} - {nFase} -{maquinaNecesaria} - {tiempoRequerido}";
+  /*let label = series1.columns.template.createChild(am4core.Label);
+  label.text = "{nPiezaEje}-{nFase}-{maquinaNecesaria}-{tiempoRequerido}";
+  label.fontWeight="bolder";
+  label.align="center";*/
+  //label.fontFamily.fontcolor("000000");
+  //label.fontSize="xl";
   series1.columns.template.strokeOpacity = 1;
   
   chart.scrollbarX = new am4core.Scrollbar();

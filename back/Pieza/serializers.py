@@ -20,11 +20,11 @@ class PiezaSerializer(serializers.ModelSerializer):
 class ResultadoGeneralSerializer(serializers.ModelSerializer):
     class Meta:
         model = ResultadoGeneral
-        fields = ('id','tiempoMax','tiempoMin','tiempoMedio','tiempoMin','SA','SR', 'NA', 'NR','ejecucion')
+        fields = ('id','tiempoMax','tiempoMin','tiempoMedio','tiempoMin','SA','SR', 'NA', 'NR','ejecucion', 'algoritmo')
 class ResultadoFinalSerializer(serializers.ModelSerializer):
     class Meta:
         model = ResultadoGeneral
-        fields = ('id','tiempoMax','tiempoMin','tiempoMedio','tiempoMin','SA','SR', 'NA', 'NR','ejecucion')
+        fields = ('id','tiempoMax','tiempoMin','tiempoMedio','tiempoMin','SA','SR', 'NA', 'NR','ejecucion', 'algoritmo')
 class PiezaResultadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiezaResultado

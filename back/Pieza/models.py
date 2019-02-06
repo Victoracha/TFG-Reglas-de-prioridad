@@ -57,6 +57,7 @@ class ResultadoGeneral(models.Model):
     NA = models.FloatField()
     NR = models.FloatField()
     ejecucion = models.ForeignKey(Ejecucion, on_delete=models.CASCADE)
+    algoritmo = models.CharField(max_length=50)
     def create(self, validated_data):
 
         return ResultadoGeneral.objects.create(**validated_data)
@@ -71,6 +72,7 @@ class ResultadoFinal(models.Model):
     NA = models.FloatField()
     NR = models.FloatField()
     ejecucion = models.ForeignKey(Ejecucion, on_delete=models.CASCADE)
+    algoritmo = models.CharField(max_length=50)
     def create(self, validated_data):
 
         return ResultadoFinal.objects.create(**validated_data)

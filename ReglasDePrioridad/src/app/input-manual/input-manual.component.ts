@@ -46,6 +46,7 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
   private algoritmos=[];
   private nPiezas=[];
   datoCargaIds=[];
+  contaExtraeNPieza=0;
    idEje: number=2;
   constructor(private apiService: APIService, private route: ActivatedRoute) { }
 
@@ -66,6 +67,7 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
           this.datosInput[elemento['nPiezaEje']-1].tiempos.push(elemento['tiempoRequerido']);
           this.datosInput[elemento['nPiezaEje']-1].index.push(elemento['index']);
           this.controlEjecucion=true;
+          
         }else{
           this.datoCargaIds.push(elemento['nPiezaEje']);
           console.log(this.datoCargaIds);
@@ -77,7 +79,10 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
           dato.tiempos.push(elemento['tiempoRequerido']);
           dato.index.push(elemento['index']);
           this.datosInput.push(dato);
+          
         }
+        this.contaExtraeNPieza+=1;
+        this.nPiezas.push(this.contaExtraeNPieza);
         console.log(this.datoCargaIds);
         
 

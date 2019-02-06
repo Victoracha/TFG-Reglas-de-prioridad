@@ -24,7 +24,7 @@
 
         <tr *ngFor="let resultadoPiezas of resultadoCapas">
             <br>
-            <h2>{{resultadoPiezas[0].indiceResultado}}</h2>
+            
             <h1 class="texto">Algoritmo {{resultadoPiezas[0].algoritmo}}</h1>
             <br>
             <br>
@@ -36,8 +36,8 @@
                 <thead>
                   <tr id="miTablaPersonalizada">
                     
-                    <th scope="col"> Número Pieza </th>
-                    <th scope="col">Tiempo Esperado</th>
+                    <th scope="col"> O.F </th>
+                    <th scope="col">Fecha de entrega</th>
                     <th scope="col">Tiempo Total</th>
                     <th scope="col">Diferencia Adelantado</th>
                     <th scope="col">Diferencia Atrasado</th>
@@ -76,7 +76,7 @@
             <table   class="table table-bordered ">
               <thead>
                 <tr id="miTablaPersonalizada">
-                  
+                  <th scope="col">Algoritmo</th>
                   <th scope="col">Tiempo Máximo</th>
                   <th scope="col">Tiempo Mínimo</th>
                   <th scope="col">Tiempo Medio</th>
@@ -92,7 +92,7 @@
                   <tr *ngFor="let pie of resultado">
                     
                     
-                    
+                    <td>{{ pie.algoritmo}} </td>
                     <td>{{ pie.tiempoMax}} </td>
                     <td>{{ pie.tiempoMin}}</td>
                     <td>{{ pie.tiempoMedio}}</td>

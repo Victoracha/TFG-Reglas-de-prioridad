@@ -21,7 +21,7 @@
                    <thead>
                      <tr id="miTablaPersonalizada">
                       <th scope="col"><h4>N PIEZA</h4></th> 
-                       <th scope="col"><h4>O.T.</h4></th>
+                       <th scope="col"><h4>O.F.</h4></th>
                        
                        <th scope="col"><h4></h4></th>
                           
@@ -34,7 +34,7 @@
                    <tbody>          
                         <tr *ngFor="let pie of datosInput; let numero of nPiezas">
                           <th><h5>{{nPiezas[pie.id-1]}}</h5></th>
-                           <th><h5>O.T &nbsp; {{pie.id}}</h5></th>
+                           <th><h5>O.F &nbsp; {{pie.id}}</h5></th>
                               <!--div *ngIf="valores"> Valor: &nbsp; {{pie.valor}} </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <div *ngIf="tiempoEsperado"> Tiempo Esperado: &nbsp;{{pie.tiempoEsperado}} </div>-->
                               
@@ -133,6 +133,8 @@
          <button type="button" class="btn2 btn-sm btn-dark  sharp btn-block" routerLink="/tabla-resultados/{{idEje}}">Ver ejecución</button><br/>
       
         </div>
+        <br/>
+                  <br/>
       </div>  
      </div>
 
@@ -254,7 +256,7 @@
             
               <div *ngFor="let pie of dato.maquinas ; index as i">
               <div class="margen">
-                  O.F {{i+1}} 
+                  O.T {{i+1}} 
                   &nbsp;&nbsp; &nbsp;&nbsp; 
                   C.T <input #Maquina type="number" min=0 value="{{pie}}" (change)="actualizaMaquina(Maquina.value)">
                   <br/>
