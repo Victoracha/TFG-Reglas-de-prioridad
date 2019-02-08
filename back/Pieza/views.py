@@ -57,7 +57,12 @@ def ejecucion_list(request):
         maquina=[]
         valores=[]
         tiempoEsperado=[]
+        controlFallo=False
         for pieza in data[0]:
+
+            if len(pieza['maquinas'])==0:
+                controlFallo=True
+
             print("id")
             print(pieza['id'])
             print("maquinas")
@@ -94,7 +99,6 @@ def ejecucion_list(request):
                     datosInput= DatosInput(ejecucion=ejecucion, nPiezaEje=pieza['id'],nFase=i, tiempoRequerido=pieza['tiempos'][i],maquinaNecesaria=pieza['maquinas'][i], valor= pieza['valor'],
                                            tiempoEs=pieza['tiempoEsperado'] , index=pieza['index'][i])
                     datosInput.save()
-                    print("AAAAAAAAAAAAAAAAAAA")
 
         else:
             id=-2
@@ -104,7 +108,8 @@ def ejecucion_list(request):
         resul = {"id": id}
         resul2 = {"id": id,"aa":'we' ,"d": 'das',"w": 'das'}
         serializer = EjecucionSerializer(data=resul)
-
+        if controlFallo==True:
+            return JsonResponse(serializer.errors, status=400)
         print(type(id))
         if type(id) == 'int':
             return JsonResponse(resul, status=201)
