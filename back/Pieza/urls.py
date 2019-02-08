@@ -8,5 +8,5 @@ urlpatterns = [
     path('datosInput/<int:ejecucion>/', views.datosInput_list_detail),
     path('ejecucion/', views.ejecucion_list),
     path('resultado/', views.resultado_list),
-    path('resultado/<int:pk>/', views.resultado_list_detail)
+    path('resultadofinal/<int:ejecucion>/', views.resultadoFinal_list_detail)
 ]

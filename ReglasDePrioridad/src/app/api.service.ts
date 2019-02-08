@@ -31,7 +31,7 @@ export  class  APIService {
 
 getTablaResultados(idEjecucion: number){
       
-    return  this.httpClient.get(`${this.API_URL}/resultado/`+ idEjecucion);
+    return  this.httpClient.get(`${this.API_URL}/resultadofinal/`+ idEjecucion);
 }
 
 getEjecucionFases(idEjecucion: number){

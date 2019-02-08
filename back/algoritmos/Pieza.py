@@ -1,5 +1,5 @@
 class Pieza:
-    def __init__(self,  maquinas, tiempos, pieza, valor):
+    def __init__(self,  maquinas, tiempos, pieza, valor, tiempoEsperado):
         q=0
         self._nPieza=pieza
         self._fases = []
@@ -7,17 +7,20 @@ class Pieza:
         self._asignatiempo = True
         self._libreMaquina=True
         self._tiempoOperacionalTotal=0
-
         self._valor = valor
+        self._tiempoEsperado = tiempoEsperado
 
-        self._Te = 0
         self._Ad = 0
         self._Ret = 0
 
 
 
         for i in range ( len (tiempos)):
-            fase=Fase(self._nPieza, tiempos[i], maquinas[i], i, self._valor)
+            max=len(tiempos)-1
+            if i < max:
+                fase=Fase(self._nPieza, tiempos[i], maquinas[i], i, self._valor, self._tiempoEsperado, tiempos[i+1])
+            else:
+                fase = Fase(self._nPieza, tiempos[i], maquinas[i], i, self._valor, self._tiempoEsperado, 0)
             self._tiempoOperacionalTotal+= fase.get_tiempoRequerido()
             self._fases.append(fase)
         self._tiempoOperacionalTotalRestante = self._tiempoOperacionalTotal
@@ -33,14 +36,18 @@ class Pieza:
         return self._valor
 
     def getTiempoEsperado(self):
-        return self._Te
+        return self._tiempoEsperado
+
+
 
     def getAdelanto(self):
         return self._Ad
-
+    def setAdelanto(self, adelanto):
+        self._Ad=adelanto
     def getRetroceso(self):
         return self._Ret
-
+    def setRetroceso(self, retroceso):
+        self._Ret=retroceso
     def getFases(self):
         return self._fases
 
@@ -67,16 +74,21 @@ class Pieza:
         self._tiempoOperacionalTotalRestante = tiempo
 
 class Fase:
-    def __init__(self, nPieza, tiempoRequerido, maquinaNecesaria, nFase, valor):
+    def __init__(self, nPieza, tiempoRequerido, maquinaNecesaria, nFase, valor, tiempoEsperado, tiempoSig):
         self._nPieza=nPieza
         self._tiempoRequerido=tiempoRequerido
         self._maquinaNecesaria=maquinaNecesaria
         self._nFase=nFase
-        self._valor = valor
+        self._tiempoSig=tiempoSig
         self._tiempoFaseEntrada = 0
         self._tiempoFaseSalida = 0
         self._tiempoOperacionalTotalRestante=0
-
+        self._valor = valor
+        self._tiempoEsperado = tiempoEsperado
+    def getValor(self):
+        return self._valor
+    def getTiempoEsperado(self):
+        return self._tiempoEsperado
     def get_nPieza(self):
         return self._nPieza
     def get_tiempoRequerido(self):
@@ -85,8 +97,8 @@ class Fase:
         return self._maquinaNecesaria
     def get_nSubpieza(self):
         return self._nFase
-    def getValor(self):
-        return self._valor
+    def getTiempoSig(self):
+        return self._tiempoSig
     def get_tiempoFaseEntrada(self):
         return self._tiempoFaseEntrada
     def get_tiempoFaseSalida(self):

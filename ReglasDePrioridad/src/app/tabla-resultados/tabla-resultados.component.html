@@ -10,23 +10,34 @@
 
 
 
-    <div class="col-lg-3"  >
+    <div class="col-lg-2"  >
     
       </div>
       <div class="col-lg-8 "  >
-        <h1 class="texto">Gráfica de ejecución</h1>
-        <div id="chartdiv" style="width: 100%; height: 450px"></div>
+        
+        
+        
         <br>
           <br>
         
-          <h1 class="texto">Resultados Detalle</h1>
+
+
+        <tr *ngFor="let resultadoPiezas of resultadoCapas">
+            <br>
+            
+            <h1 class="texto">Algoritmo {{resultadoPiezas[0].algoritmo}}</h1>
+            <br>
+            <br>
+            <h3 class="texto">Gráfica de ejecución</h3>
+            <div id="{{resultadoPiezas[0].indiceResultado}}" style="width: 100%; height: 450px"></div>
+          <h3 class="texto">Resultados Detalle</h3>
           <div class="table-responsive-xl">
               <table   class="table table-bordered ">
                 <thead>
                   <tr id="miTablaPersonalizada">
                     
-                    <th scope="col"> Número Pieza </th>
-                    <th scope="col">Tiempo Esperado</th>
+                    <th scope="col"> O.F </th>
+                    <th scope="col">Fecha de entrega</th>
                     <th scope="col">Tiempo Total</th>
                     <th scope="col">Diferencia Adelantado</th>
                     <th scope="col">Diferencia Atrasado</th>
@@ -56,6 +67,7 @@
               </table>
             </div>
             <br>
+          </tr>
           <br>
             <h1 class="texto">Resultados Totales</h1>
         <br>
@@ -64,7 +76,7 @@
             <table   class="table table-bordered ">
               <thead>
                 <tr id="miTablaPersonalizada">
-                  
+                  <th scope="col">Algoritmo</th>
                   <th scope="col">Tiempo Máximo</th>
                   <th scope="col">Tiempo Mínimo</th>
                   <th scope="col">Tiempo Medio</th>
@@ -80,7 +92,7 @@
                   <tr *ngFor="let pie of resultado">
                     
                     
-                    
+                    <td>{{ pie.algoritmo}} </td>
                     <td>{{ pie.tiempoMax}} </td>
                     <td>{{ pie.tiempoMin}}</td>
                     <td>{{ pie.tiempoMedio}}</td>
@@ -97,7 +109,7 @@
           </div>
           
       </div>
-      <div class="col-lg-1"  >
+      <div class="col-lg-2"  >
           
          
           

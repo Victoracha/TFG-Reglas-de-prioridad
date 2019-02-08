@@ -14,9 +14,12 @@ from Pieza.serializers import FaseSerializer
 from Pieza.models import PiezaResultado
 from Pieza.serializers import PiezaResultadoSerializer
 from algoritmos.Control import Control
-
+from django.utils import timezone
 from Pieza.models import DatosInput
 from Pieza.serializers import DatosInputSerializer
+from Pieza.models import ResultadoFinal
+from Pieza.serializers import ResultadoFinalSerializer
+
 import pdb
 @csrf_exempt
 def ejecucion_list(request):
@@ -28,6 +31,7 @@ def ejecucion_list(request):
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
+        print(data)
         piezas_maquina = [[2, 3, 1], [2, 1, 2, 3], [3, 1, 2], [2, 3, 1, 2], [3, 2]]
         piezas_tiempo = [[2, 2, 1], [0.5, 2, 0.5, 2.5], [1.5, 2.5, 1], [1, 2.5, 3, 1], [0.5, 2]]
 
@@ -45,9 +49,15 @@ def ejecucion_list(request):
         piezas_maquina = [[2,1 ,2 ], [1,2 ,1 ,2], [2,3 ,1], [2, 1, 2,1], [1,3,2]]
         nMaquinas = 3
         piezas_tiempo = [[0.5,1.5 ,1 ], [0.5, 1,0.5 ,1], [1,0.5 ,1.5], [1.5, 2, 1,0.5], [1, 1,0.5]]
+
+        #3
+        piezas_maquina = [[2, 3, 1], [2, 1, 2, 3], [3, 1, 2], [2, 3, 1, 2], [3, 2]]
+        piezas_tiempo = [[1, 2, 1], [0.5, 2, 0.5, 2.5], [1.5, 2.5, 1], [1, 2.5, 3, 1], [0.5, 2]]
         tiempo=[]
         maquina=[]
-        for pieza in data:
+        valores=[]
+        tiempoEsperado=[]
+        for pieza in data[0]:
             print("id")
             print(pieza['id'])
             print("maquinas")
@@ -56,26 +66,39 @@ def ejecucion_list(request):
             print(pieza['tiempos'])
             tiempo.append(pieza['tiempos'])
             maquina.append(pieza['maquinas'])
+            valores.append(pieza['valor'])
+            tiempoEsperado.append(pieza['tiempoEsperado'])
         print(data)
         print("maquina")
         print(maquina)
         print("tiempo")
         print(tiempo)
         #control = Control(maquina, tiempo)
+        print(len(data[1]))
+        #valores = [4, 3, 2, 5, 6]
+        #tiempoEsperado = [6, 9, 6, 12, 5]
+        indice=0
+        if len(tiempo) >0 and len( maquina)>0 and len(data[1])>0:
+            e = Ejecucion(fecha=timezone.now(), nPiezas=len(piezas_maquina), nMaquinas=nMaquinas)
+            e.save()
+            i=0
+            for elemento in data[1]:
+                #control = Control(piezas_maquina, piezas_tiempo, e, nMaquinas, elemento, valores, tiempoEsperado)
+                control = Control(maquina, tiempo, e, nMaquinas, elemento, valores, tiempoEsperado)
+                ejecucion=control.algoritmo(i)
+                i += 1
 
-        valores = [4, 3, 2, 5, 6]
-        control = Control(piezas_maquina, piezas_tiempo, nMaquinas, "mayorvalor", valores)
-        if len(tiempo) >0 and len( maquina)>0:
-            ejecucion=control.algoritmo()
             id=ejecucion.id
-            for pieza in data:
+            for pieza in data[0]:
                 for i in range(len(pieza['maquinas'])):
                     datosInput= DatosInput(ejecucion=ejecucion, nPiezaEje=pieza['id'],nFase=i, tiempoRequerido=pieza['tiempos'][i],maquinaNecesaria=pieza['maquinas'][i], valor= pieza['valor'],
                                            tiempoEs=pieza['tiempoEsperado'] , index=pieza['index'][i])
                     datosInput.save()
+                    print("AAAAAAAAAAAAAAAAAAA")
+
         else:
             id=-2
-        print(datosInput)
+
 
         print(id)
         resul = {"id": id}
@@ -90,7 +113,7 @@ def ejecucion_list(request):
             return JsonResponse(resul, status=201)
         if type(id) == 'int':
             return JsonResponse(resul, status=201)"""
-        if(i>-1):
+        if(id>-1):
             return JsonResponse(resul, status=201)
         return JsonResponse(serializer.errors, status=400)
 
@@ -109,12 +132,18 @@ def resultado_list(request):
         serializer = ResultadoGeneralSerializer(resultado, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-def resultado_list_detail(request, pk):
+def resultado_list_detail(request, ejecucion):
 
     if request.method == 'GET':
-        resultado= ResultadoGeneral.objects.get(pk=pk)
-        serializer = ResultadoGeneralSerializer(resultado)
-        return JsonResponse(serializer.data)
+        resultado= ResultadoGeneral.objects.filter(id=ejecucion)
+        serializer = ResultadoGeneralSerializer(resultado, many=True)
+        return JsonResponse(serializer.data, safe=False)
+def resultadoFinal_list_detail(request, ejecucion):
+
+    if request.method == 'GET':
+        resultadoFinal= ResultadoFinal.objects.filter(ejecucion=ejecucion)
+        serializer = ResultadoFinalSerializer(resultadoFinal, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 def fase_list_detail(request, ejecucion):
 

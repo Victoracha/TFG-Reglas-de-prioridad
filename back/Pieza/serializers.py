@@ -11,7 +11,7 @@ from Pieza.models import DatosInput
 class EjecucionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ejecucion
-        fields = ('id','fecha')
+        fields = ('id','fecha','nPiezas','nMaquinas')
 
 class PiezaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,16 +20,20 @@ class PiezaSerializer(serializers.ModelSerializer):
 class ResultadoGeneralSerializer(serializers.ModelSerializer):
     class Meta:
         model = ResultadoGeneral
-        fields = ('id','tiempoMax','tiempoMin','tiempoMedio','tiempoMin','SA','SR', 'NA', 'NR')
+        fields = ('id','tiempoMax','tiempoMin','tiempoMedio','tiempoMin','SA','SR', 'NA', 'NR','ejecucion', 'algoritmo')
+class ResultadoFinalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ResultadoGeneral
+        fields = ('id','tiempoMax','tiempoMin','tiempoMedio','tiempoMin','SA','SR', 'NA', 'NR','ejecucion', 'algoritmo')
 class PiezaResultadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiezaResultado
-        fields = ('id','nPieza','ejecucion','tiempoEsperado','tiempoTotal', 'diferenciaAde', 'diferenciaRetra')
+        fields = ('id','nPieza','ejecucion','tiempoEsperado','tiempoTotal', 'diferenciaAde', 'diferenciaRetra', 'indiceResultado', 'algoritmo')
 
 class FaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fase
-        fields = ('id','nPieza', 'nPiezaEje','ejecucion', 'nFase','tiempoRequerido','maquinaNecesaria', 'tiempoFaseEntrada', 'tiempoFaseSalida', 'color', 'brightness')
+        fields = ('id','nPieza', 'nPiezaEje','ejecucion', 'nFase','tiempoRequerido','maquinaNecesaria', 'tiempoFaseEntrada', 'tiempoFaseSalida', 'color', 'brightness', 'indiceResultado')
 
 class DatosInputSerializer(serializers.ModelSerializer):
     class Meta:

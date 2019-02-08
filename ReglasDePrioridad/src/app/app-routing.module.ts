@@ -9,6 +9,7 @@ import { PiezaComponent } from './pieza/pieza.component';
 import { FormFasesComponent } from './form-fases/form-fases.component';
 import { TablaResultadosComponent } from './tabla-resultados/tabla-resultados.component';
 import { HistorialBaseDatosComponent } from './historial-base-datos/historial-base-datos.component';
+import { AyudaComponent } from './ayuda/ayuda.component';
 
 const routes: Routes = [
   { path: 'input', component: MenuInputEjecucionComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
     component: PiezaComponent
   },
   { path: 'home', component: HomeComponent },
+  { path: 'ayuda', component: AyudaComponent },
   { path: 'form-fases', component: FormFasesComponent },
   { path: 'tabla-resultados', component: TablaResultadosComponent },
   { path: 'tabla-resultados/:id', component: TablaResultadosComponent }

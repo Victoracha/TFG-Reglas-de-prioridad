@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark">
         <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" routerLink="/home">Inicio</a>
         <button class="navbar-toggler leftNavbarToggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,25 +21,20 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" routerLink="/input">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
+                    
                     
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" routerLink="/input">Ejecutar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link" routerLink="/historial/0">Historial</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/ayuda">Soporte</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+                   
                 </li>
             </ul>
            <!--  <form class="form-inline my-2 my-lg-0">
@@ -50,75 +45,9 @@
     </div>
     </nav>
    
-    <!------ Include the above in your HEAD tag ---------->
     
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  
+          
     
-    <div class="nav-side-menu">
-        <div class="brand">Brand Logo</div>
-        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-      
-            <div class="menu-list">
-      
-                <ul id="menu-content" class="menu-content collapse out">
-                    <li>
-                      <a href="#">
-                      <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                      </a>
-                    </li>
-    
-                    <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-                      <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
-                    </li>
-                    <ul class="sub-menu collapse" id="products">
-                        <li class="active"><a href="#">CSS3 Animation</a></li>
-                        <li><a href="#">General</a></li>
-                        <li><a href="#">Buttons</a></li>
-                        <li><a href="#">Tabs & Accordions</a></li>
-                        <li><a href="#">Typography</a></li>
-                        <li><a href="#">FontAwesome</a></li>
-                        <li><a href="#">Slider</a></li>
-                        <li><a href="#">Panels</a></li>
-                        <li><a href="#">Widgets</a></li>
-                        <li><a href="#">Bootstrap Model</a></li>
-                       
-                    </ul>
-    
-    
-                    <li data-toggle="collapse" data-target="#service" class="collapsed">
-                      <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
-                    </li>  
-                    <ul class="sub-menu collapse" id="service">
-                      <li>New Service 1</li>
-                      <li>New Service 2</li>
-                      <li>New Service 3</li>
-                    </ul>
-    
-    
-                    <li data-toggle="collapse" data-target="#new" class="collapsed">
-                      <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
-                    </li>
-                    <ul class="sub-menu collapse" id="new">
-                      <li>New New 1</li>
-                      <li>New New 2</li>
-                      <li>New New 3</li>
-                    </ul>
-    
-    
-                     <li>
-                      <a href="#">
-                      <i class="fa fa-user fa-lg"></i> Profile
-                      </a>
-                      </li>
-    
-                     <li>
-                      <a  routerLink="/input">
-                      <i class="fa fa-users fa-lg"></i> Users
-                      </a>
-                
-                    </li>
-                </ul>
-         </div>
-    </div>
     
     <router-outlet></router-outlet>
