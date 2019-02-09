@@ -1,4 +1,3 @@
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -10,117 +9,107 @@
 
 
 
-    <div class="col-lg-2"  >
-    
-      </div>
-      <div class="col-lg-8 "  >
-        
-        
-        
-        <br>
-          <br>
-        
+<div class="col-lg-2">
+
+</div>
+<div class="col-lg-8 ">
 
 
-        <tr *ngFor="let resultadoPiezas of resultadoCapas">
-            <br>
-            
-            <h1 class="texto">Algoritmo {{resultadoPiezas[0].algoritmo}}</h1>
-            <br>
-            <br>
-            <h3 class="texto">Gráfica de ejecución</h3>
-            <div id="{{resultadoPiezas[0].indiceResultado}}" style="width: 100%; height: 450px"></div>
-          <h3 class="texto">Resultados Detalle</h3>
-          <div class="table-responsive-xl">
-              <table   class="table table-bordered ">
-                <thead>
-                  <tr id="miTablaPersonalizada">
-                    
-                    <th scope="col"> O.F </th>
-                    <th scope="col">Plazo de entrega</th>
-                    <th scope="col">Tiempo Total</th>
-                    <th scope="col">Diferencia Adelantado</th>
-                    <th scope="col">Diferencia Atrasado</th>
-                    
-                   
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                    <tr *ngFor="let pie of resultadoPiezas">
-                      
-                      
-                      
-                      <td>{{ pie.nPieza}} </td>
-                      <!--<td>{{ pie.ejecucion}}</td>-->
-                      <td>{{ pie.tiempoEsperado}}</td>
-                      <td>{{ pie.tiempoTotal}} </td>
-                      <td>{{ pie.diferenciaAde}}</td>
-                      <td>{{ pie.diferenciaRetra}}</td>
-                    
-                      
-                    </tr>
-                  
-                  
-                </tbody>
-              </table>
-            </div>
-            <br>
+
+  <br>
+  <br>
+
+
+
+  <tr *ngFor="let resultadoPiezas of resultadoCapas">
+    <br>
+
+    <h1 class="texto">Algoritmo {{resultadoPiezas[0].algoritmo}}</h1>
+    <br>
+    <br>
+    <h3 class="texto">Gráfica de ejecución</h3>
+    <div id="{{resultadoPiezas[0].indiceResultado}}" style="width: 100%; height: 450px"></div>
+    <h3 class="texto">Resultados Detalle</h3>
+    <div class="table-responsive-xl">
+      <table class="table table-bordered ">
+        <thead>
+          <tr id="miTablaPersonalizada">
+
+            <th scope="col"> O.F </th>
+            <th scope="col">Plazo de entrega</th>
+            <th scope="col">Tiempo Total</th>
+            <th scope="col">Diferencia Adelantado</th>
+            <th scope="col">Diferencia Atrasado</th>
+
+
+
           </tr>
-          <br>
-            <h1 class="texto">Resultados Totales</h1>
-        <br>
-          <br>
-          <div class="table-responsive-xl">
-            <table   class="table table-bordered ">
-              <thead>
-                <tr id="miTablaPersonalizada">
-                  <th scope="col">Algoritmo</th>
-                  <th scope="col">Tiempo Máximo</th>
-                  <th scope="col">Tiempo Mínimo</th>
-                  <th scope="col">Tiempo Medio</th>
-                  <th scope="col">SA</th>
-                  <th scope="col">SR</th>
-                  <th scope="col">NA</th>
-                  <th scope="col">NR</th>
-                  
-                </tr>
-              </thead>
-              <tbody>
-                
-                  <tr *ngFor="let pie of resultado">
-                    
-                    
-                    <td>{{ pie.algoritmo}} </td>
-                    <td>{{ pie.tiempoMax}} </td>
-                    <td>{{ pie.tiempoMin}}</td>
-                    <td>{{ pie.tiempoMedio}}</td>
-                    <td>{{ pie.SA}} </td>
-                    <td>{{ pie.SR}}</td>
-                    <td>{{ pie.NA}}</td>
-                    <td>{{ pie.NR}}</td>
-                    
-                  </tr>
-                
-                
-              </tbody>
-            </table>
-          </div>
-          
-      </div>
-      <div class="col-lg-2"  >
-          
-         
-          
-        </div>
-        
-        
-     
+        </thead>
+        <tbody>
 
-        
-        
-        
- 
-            
-         
+          <tr *ngFor="let pie of resultadoPiezas">
+
+
+
+            <td>{{ pie.nPieza}} </td>
+            <!--<td>{{ pie.ejecucion}}</td>-->
+            <td>{{ pie.tiempoEsperado}}</td>
+            <td>{{ pie.tiempoTotal}} </td>
+            <td>{{ pie.diferenciaAde}}</td>
+            <td>{{ pie.diferenciaRetra}}</td>
+
+
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+    <br>
+  </tr>
+  <br>
+  <h1 class="texto">Resultados Totales</h1>
+  <br>
+  <br>
+  <div class="table-responsive-xl">
+    <table class="table table-bordered ">
+      <thead>
+        <tr id="miTablaPersonalizada">
+          <th scope="col">Algoritmo</th>
+          <th scope="col">Tiempo Máximo</th>
+          <th scope="col">Tiempo Mínimo</th>
+          <th scope="col">Tiempo Medio</th>
+          <th scope="col">SA</th>
+          <th scope="col">SR</th>
+          <th scope="col">NA</th>
+          <th scope="col">NR</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let pie of resultado">
+
+
+          <td>{{ pie.algoritmo}} </td>
+          <td>{{ pie.tiempoMax}} </td>
+          <td>{{ pie.tiempoMin}}</td>
+          <td>{{ pie.tiempoMedio}}</td>
+          <td>{{ pie.SA}} </td>
+          <td>{{ pie.SR}}</td>
+          <td>{{ pie.NA}}</td>
+          <td>{{ pie.NR}}</td>
+
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<div class="col-lg-2">
+
+
+
+</div>
