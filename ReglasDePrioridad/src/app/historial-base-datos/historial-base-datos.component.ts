@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./historial-base-datos.component.css']
 })
 export class HistorialBaseDatosComponent implements OnInit {
-  private ejecucion: Array<object> = [];
+  ejecucion: Array<object> = [];
   ejecutar: Number;
   esEjecucion: Boolean;
   constructor(private apiService: APIService, private route: ActivatedRoute) { }
@@ -15,24 +15,24 @@ export class HistorialBaseDatosComponent implements OnInit {
   ngOnInit() {
     this.ejecutar = +this.route.snapshot.paramMap.get('id');
     console.log(this.ejecucion);
-    if(this.ejecutar==1){
-      this.esEjecucion=true;
-    }else{
-      this.esEjecucion=false;
+    if (this.ejecutar == 1) {
+      this.esEjecucion = true;
+    } else {
+      this.esEjecucion = false;
     }
     this.getEjecucion();
   }
 
-  public getEjecucion(){
+  public getEjecucion() {
 
-   
+
 
     this.apiService.getEjecucion().subscribe((data: Array<object>) => {
-      
+
       this.ejecucion = data;
       console.log(data);
     });
-    
+
   }
 
 }

@@ -13,13 +13,13 @@ am4core.useTheme(am4themes_animated);
   styleUrls: ['./tabla-resultados.component.css']
 })
 export class TablaResultadosComponent implements OnInit {
-  private resultado: Array<object> = [];
-  private resultadoPiezas: Array<object> = [];
+  resultado: Array<object> = [];
+  resultadoPiezas: Array<object> = [];
   fase: Array<object> = [];
   idEjecucion: number;
-  private resultadoCapas = [];
+  resultadoCapas = [];
   idGra = 0;
-  private faseBuena: Array<object> = [];
+  faseBuena: Array<object> = [];
   constructor(private apiService: APIService, private zone: NgZone, private route: ActivatedRoute) { }
 
   ngOnInit() {

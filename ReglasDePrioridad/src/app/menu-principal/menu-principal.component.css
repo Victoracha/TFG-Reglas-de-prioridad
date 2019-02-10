@@ -1,17 +1,15 @@
 
 .btn {
-    margin-left: 380px;
+    margin-left: 80px;
     margin-right: auto;
     padding: 14px 24px;
     border: 0 none;
-    height: 50px;
-    width: 170px;
+    width: 400px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     
 }
-    
 .texto {
     margin-left: 70px;
     margin-right: auto;
@@ -42,7 +40,13 @@
   CUSTON BTN VALUES
 ************************/
 
-
+.btn {
+    padding: 50px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
 .btn:focus, .btn:active:focus, .btn.active:focus {
     outline: 0 none;
 }
@@ -57,13 +61,4 @@
 .btn-primary:active, .btn-primary.active {
     background: #007299;
     box-shadow: none;
-}
-
-.textoDescriptivo{
-    text-align: justify;
-    color: 262626;
-}
-.titulo{
-    text-align: center;
-    font-weight: bold;
 }

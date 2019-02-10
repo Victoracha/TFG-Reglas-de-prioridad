@@ -14,6 +14,7 @@ import { HttpClientModule } from  '@angular/common/http';
 import { TablaResultadosComponent } from './tabla-resultados/tabla-resultados.component';
 import { HistorialBaseDatosComponent } from './historial-base-datos/historial-base-datos.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
+import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AyudaComponent } from './ayuda/ayuda.component';
  
     TablaResultadosComponent,
     HistorialBaseDatosComponent,
-    AyudaComponent
+    AyudaComponent,
+    MenuPrincipalComponent
     
   ],
   imports: [
