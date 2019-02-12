@@ -27,6 +27,8 @@ class Maquina:
         return self._nMaquina
     def getTiempoMaquina(self):
         return self._tiempoActual
+    def getCandidatos(self):
+        return self._candidatos
     def setEjecucion(self, nPieza):
         if nPieza != 0:
             self._ejecucion.append(nPieza)
@@ -62,7 +64,7 @@ class Maquina:
             self._FasesEjecutadasHisto.append(self._faseActualMaquina[0])
         else:
             self._FasesEjecutadasHisto.append(0)
-    def ejecutarFase(self):
+    def ejecutarFase(self, tamanosCola):
         #self.esLibre()
         if len(self._candidatos) >0 and self._libre==True:
             if self._algoritmo == "spt":
@@ -80,7 +82,7 @@ class Maquina:
             elif self._algoritmo=="edd":
                 self.edd()
             elif self._algoritmo == "winq":
-                self.winq()
+                self.winq(tamanosCola)
             self._libre =False
             if len(self._faseActualMaquina) > 0:
                 self._FasesEjecutadasLista.append(self._faseActualMaquina[0])
@@ -147,17 +149,20 @@ class Maquina:
                 candidato.set_TiempoEntrada(self._tiempoActual)
 
 
-    def winq(self):
+    def winq(self, tamanosCola):
         for candidato in self._candidatos:
+            colaSigCand=tamanosCola[candidato.getTiempoSig()-1]
 
             if len(self._faseActualMaquina) == 0:
                 self._faseActualMaquina = [candidato]
                 self._tiempoEjecucionFase = self._tiempoActual
                 candidato.set_TiempoEntrada(self._tiempoActual)
-            elif self._faseActualMaquina[0].getTiempoSig() > candidato.getTiempoSig():
+                colaSigAnt = tamanosCola[self._faseActualMaquina[0].getTiempoSig() - 1]
+            elif colaSigAnt > colaSigCand:
                 self._faseActualMaquina = [candidato]
                 self._tiempoEjecucionFase = self._tiempoActual
                 candidato.set_TiempoEntrada(self._tiempoActual)
+                colaSigAnt = tamanosCola[self._faseActualMaquina[0].getTiempoSig() - 1]
 
     def fifo(self):
         self._faseActualMaquina = [self._candidatos[0]]

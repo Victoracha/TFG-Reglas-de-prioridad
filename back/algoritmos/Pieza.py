@@ -18,7 +18,7 @@ class Pieza:
         for i in range ( len (tiempos)):
             max=len(tiempos)-1
             if i < max:
-                fase=Fase(self._nPieza, tiempos[i], maquinas[i], i, self._valor, self._tiempoEsperado, tiempos[i+1])
+                fase=Fase(self._nPieza, tiempos[i], maquinas[i], i, self._valor, self._tiempoEsperado, maquinas[i+1])
             else:
                 fase = Fase(self._nPieza, tiempos[i], maquinas[i], i, self._valor, self._tiempoEsperado, 0)
             self._tiempoOperacionalTotal+= fase.get_tiempoRequerido()
