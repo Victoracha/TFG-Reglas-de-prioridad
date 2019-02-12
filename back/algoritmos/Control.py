@@ -1,7 +1,7 @@
 from algoritmos.Pieza import Pieza
 from algoritmos.Maquina import  Maquina
 from algoritmos.Executor import  Executor
-
+import math
 from Pieza.models import Ejecucion, PiezaEje, ResultadoFinal, PiezaResultado, Fase
 from django.utils import timezone
 class Control():
@@ -94,9 +94,10 @@ class Control():
                                diferenciaAde=pieza.getAdelanto(), diferenciaRetra=pieza.getRetroceso(), indiceResultado=indiceResultado, algoritmo=self._algoritmo)
 
             p.save()
-        resultado = ResultadoFinal( tiempoMax=self._tiempoMax, tiempoMin=self._tiempoMin,
-                                     tiempoMedio=self._tiempoMedio
-                                     , SA=self._SA, SR=self._SR, NA=self._NA, NR=self._NR, ejecucion=e, algoritmo=self._algoritmo )
+            round(4.3527, 2)
+        resultado = ResultadoFinal( tiempoMax=round(self._tiempoMax,2), tiempoMin=round(self._tiempoMin,2),
+                                     tiempoMedio=round(self._tiempoMedio,2)
+                                     , SA=round(self._SA,2), SR=round(self._SR,2), NA=self._NA, NR=self._NR, ejecucion=e, algoritmo=self._algoritmo )
         resultado.save()
 
         for maquina in self._maquinas:
@@ -105,7 +106,7 @@ class Control():
                     coe=faseResul.get_nPieza()*10
                     fase = Fase( nPieza= p, nPiezaEje=faseResul.get_nPieza(), ejecucion=e, nFase=faseResul.get_nSubpieza(), tiempoRequerido = faseResul.get_tiempoRequerido(),
                         maquinaNecesaria= faseResul.get_maquinaNecesaria(), tiempoFaseEntrada= faseResul.get_tiempoFaseEntrada(), tiempoFaseSalida= faseResul.get_tiempoFaseSalida()
-                                 , color=coe, brightness=faseResul.get_nPieza()/10, indiceResultado=indiceResultado)
+                                 , color=coe, brightness=faseResul.get_nPieza()/10, indiceResultado=indiceResultado, tiempoMax=math.ceil(self._tiempoMax))
 
                     fase.save()
         return e

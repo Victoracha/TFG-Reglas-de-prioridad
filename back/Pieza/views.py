@@ -58,6 +58,8 @@ def ejecucion_list(request):
         valores=[]
         tiempoEsperado=[]
         controlFallo=False
+        print("DAATTAS")
+        print(data[0])
         for pieza in data[0]:
 
             if len(pieza['maquinas'])==0:
@@ -71,6 +73,9 @@ def ejecucion_list(request):
             print(pieza['tiempos'])
             tiempo.append(pieza['tiempos'])
             maquina.append(pieza['maquinas'])
+            for maqui in pieza['maquinas']:
+                if nMaquinas<maqui:
+                    nMaquinas=maqui
             valores.append(pieza['valor'])
             tiempoEsperado.append(pieza['tiempoEsperado'])
         print(data)
@@ -83,8 +88,10 @@ def ejecucion_list(request):
         #valores = [4, 3, 2, 5, 6]
         #tiempoEsperado = [6, 9, 6, 12, 5]
         indice=0
+        print(len(piezas_maquina))
+        nPiezas=len(data[0])
         if len(tiempo) >0 and len( maquina)>0 and len(data[1])>0:
-            e = Ejecucion(fecha=timezone.now(), nPiezas=len(piezas_maquina), nMaquinas=nMaquinas)
+            e = Ejecucion(fecha=timezone.now(), nPiezas=nPiezas, nMaquinas=nMaquinas)
             e.save()
             i=0
             for elemento in data[1]:

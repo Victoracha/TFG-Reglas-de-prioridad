@@ -133,6 +133,7 @@ export class TablaResultadosComponent implements OnInit {
       let colorSet = new am4core.ColorSet();
       colorSet.saturation = 0.4;
       console.log(this.fase)
+      var tiempoMax = 0;
       for (let item of this.fase) {
         let vara = {
           id: item['id'],
@@ -147,6 +148,7 @@ export class TablaResultadosComponent implements OnInit {
           tiempoFaseSalida: item['tiempoFaseSalida'],
           color: colorSet.getIndex(item['color']).brighten(item['brightness'])
         };
+        tiempoMax=item['tiempoMax'];
         this.faseBuena.push(vara);
       }
       console.log(this.faseBuena)
@@ -165,7 +167,7 @@ export class TablaResultadosComponent implements OnInit {
       //categoryAxis.renderer.labels.template.fill = am4core.color("#black");
       let valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
       valueAxis.min = 0;
-      valueAxis.max = 12;
+      valueAxis.max = tiempoMax;
       valueAxis.renderer.tooltipLocation = 0;
       valueAxis.title.text = "Unidades de tiempo";
       /*let DurationAxis = chart.xAxes.push(new am4charts.DateAxis());
