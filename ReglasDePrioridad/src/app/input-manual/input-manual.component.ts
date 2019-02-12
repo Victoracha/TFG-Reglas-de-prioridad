@@ -344,6 +344,14 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
     this.isSpt = true;
     this.isLpt = true;
     this.isTiempoRes = true;
+    this.algoritmos.push("spt");
+    this.algoritmos.push("llp");
+    this.algoritmos.push("fifo");
+    this.algoritmos.push("aleatorio");
+    this.algoritmos.push("mayorvalor");
+    this.algoritmos.push("edd");
+    this.algoritmos.push("mayortiempo");
+    this.algoritmos.push("winq");
   }
   DeSelccionartodos() {
     this.isAlea = false;
@@ -354,6 +362,7 @@ export class InputManualComponent implements OnInit, NgxLoadingModule {
     this.isSpt = false;
     this.isLpt = false;
     this.isTiempoRes = false;
+    this.algoritmos=[];
   }
 
 }
