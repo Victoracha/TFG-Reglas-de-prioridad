@@ -190,10 +190,10 @@ export class TablaResultadosComponent implements OnInit {
       series1.columns.template.propertyFields.stroke = "color";
       let bullet1 = series1.bullets.push(new am4charts.LabelBullet());
       //bullet1.label.text="{nPiezaEje} - {nFase} -{maquinaNecesaria} - {tiempoRequerido}";
-      /*let label = series1.columns.template.createChild(am4core.Label);
+      let label = series1.columns.template.createChild(am4core.Label);
       label.text = "{nPiezaEje}-{nFase}-{maquinaNecesaria}-{tiempoRequerido}";
       label.fontWeight="bolder";
-      label.align="center";*/
+      label.align="center";
       //label.fontFamily.fontcolor("000000");
       //label.fontSize="xl";
       series1.columns.template.strokeOpacity = 1;
